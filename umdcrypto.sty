@@ -1,7 +1,11 @@
-% umdcrypto
+%%
+%% umdcrypto --- style file for crypto papers
+%%
+%% Author: Alex J Malozemoff < amaloz @ cs . umd . edu >
+%%
 
 \def\filename{umdcrypto}
-\def\fileversion{V0.1}
+\def\fileversion{v0.1}
 \def\filedate{2013/09/19}
 
 \NeedsTeXFormat{LaTeX2e}
@@ -13,15 +17,24 @@
 \submissionfalse%
 
 \DeclareOption{submission}{%
-  \ifsubmission\true%
+  \submissiontrue%
+}
+
+\newif\ifreflinks%
+\reflinksfalse%
+
+\DeclareOption{reflinks}{%
+  \reflinkstrue%
 }
 
 \ProcessOptions%
 
-\RequirePackage{amsmath}
-\RequirePackage{amssymb}
-\RequirePackage{amsthm}
+\RequirePackage{amsfonts,amsmath,amssymb,amsthm}
 \RequirePackage{xspace}
+\ifreflinks
+  \RequirePackage[colorlinks=true,citecolor=cyan,linkcolor=blue]{hyperref}
+\fi
+
 
 \ifsubmission%
     \newcommand{\authnote}[2]{}
@@ -32,41 +45,26 @@
     \RequirePackage{color}
     \newcommand{\authnote}[2]{{\footnotesize\textbf{[#1: #2]}}}
     \newcommand{\authnotec}[3]{\textcolor{#3}{\authnote{#1}{#2}}}
-    \newcommand{\TODO}[1]{\textcolor{red}{TODO\@: {#1}}}
+    \newcommand{\TODO}[1]{\noindent\textcolor{red}{TODO\@: {#1}}}
     \newcommand{\verified}[1]{\begin{center}\fbox{{\bf\small Verified: #1}}\end{center}}
 \fi
 
-
-
-%
-% Symbol shorthands
-%
-
-\newcommand{\subkey}[2]{\ensuremath{s^{#1}_{#2}}\xspace}
-
-\renewcommand\a{\ensuremath{\mathtt a}}
-\renewcommand\b{\ensuremath{\mathtt b}}
-\renewcommand\t{\ensuremath{\mathtt t}}
-\newcommand\A{\ensuremath{\mathtt A}}
-\newcommand\B{\ensuremath{\mathtt B}}
-\newcommand\T{\ensuremath{\mathtt T}}
-
-\renewcommand\AA{\ensuremath{\mathbb A}}
-\newcommand\BB{\ensuremath{\mathbb B}}
-\newcommand\CC{\ensuremath{\mathbb C}}
-\newcommand\DD{\ensuremath{\mathbb D}}
-\newcommand\EE{\ensuremath{\mathbb E}}
-\newcommand\FF{\ensuremath{\mathbb F}}
-\newcommand\GG{\ensuremath{\mathbb G}}
-\newcommand\HH{\ensuremath{\mathbb H}}
-\newcommand\II{\ensuremath{\mathbb I}}
-\newcommand\NN{\ensuremath{\mathbb N}}
-\newcommand\PP{\ensuremath{\mathbb P}}
-\newcommand\QQ{\ensuremath{\mathbb Q}}
-\newcommand\RR{\ensuremath{\mathbb R}}
-\newcommand\VV{\ensuremath{\mathbb V}}
-\newcommand\XX{\ensuremath{\mathbb X}}
-\newcommand\ZZ{\ensuremath{\mathbb Z}}
+\renewcommand\AA{\ensuremath{\mathbb A}\xspace}
+\newcommand\BB{\ensuremath{\mathbb B}\xspace}
+\newcommand\CC{\ensuremath{\mathbb C}\xspace}
+\newcommand\DD{\ensuremath{\mathbb D}\xspace}
+\newcommand\EE{\ensuremath{\mathbb E}\xspace}
+\newcommand\FF{\ensuremath{\mathbb F}\xspace}
+\newcommand\GG{\ensuremath{\mathbb G}\xspace}
+\newcommand\HH{\ensuremath{\mathbb H}\xspace}
+\newcommand\II{\ensuremath{\mathbb I}\xspace}
+\newcommand\NN{\ensuremath{\mathbb N}\xspace}
+\newcommand\PP{\ensuremath{\mathbb P}\xspace}
+\newcommand\QQ{\ensuremath{\mathbb Q}\xspace}
+\newcommand\RR{\ensuremath{\mathbb R}\xspace}
+\newcommand\VV{\ensuremath{\mathbb V}\xspace}
+\newcommand\XX{\ensuremath{\mathbb X}\xspace}
+\newcommand\ZZ{\ensuremath{\mathbb Z}\xspace}
 
 \newcommand\AAA{\ensuremath{\mathcal A}\xspace}
 \newcommand\BBB{\ensuremath{\mathcal B}\xspace}
@@ -141,10 +139,6 @@
 
 \newcommand{\poly}{\ensuremath{\text{poly}}}
 
-%
-% crypto/complexity macros
-%
-
 \newcommand{\bigo}[1]{\ensuremath{\OOO\Paren{#1}}}
 \newcommand{\ppt}{\ensuremath{\sc{ppt}}}
 
@@ -159,18 +153,12 @@
 \newcommand{\Zp}{\ensuremath{\ZZ_p}}
 \newcommand{\Zq}{\ensuremath{\ZZ_q}}
 
-\newcommand{\sh}[1]{\Brac{#1}}
-\newcommand{\bsh}[1]{\angles{#1}}
-\newcommand{\ash}[1]{[\![#1]\!]}
-
 \newcommand{\Sim}[1][\relax]{\ensuremath{\SSS_{#1}}\xspace}
-\newcommand{\s}[1]{\ensuremath{\hat{#1}}\xspace}
+\newcommand{\Adv}[1][\relax]{\ensuremath{\mathcal{A}_{#1}}\xspace}
 
-\newcommand{\Adv}{\ensuremath{\mathcal{A}}\xspace}
-\newcommand{\Aenc}{\ensuremath{\mathcal{A}^{\textbf{Enc}}}\xspace}
-\newcommand{\Hybrid}[1]{\ensuremath{\mathbf{Hybrid_{#1}}}}
-\newcommand{\Real}{\ensuremath{\mathbf{Real}}}
-\newcommand{\Ideal}{\ensuremath{\mathbf{Ideal}}}
+\newcommand{\Hybrid}[1][\relax]{\ensuremath{\mathbf{Hybrid_{#1}}}\xspace}
+\newcommand{\Real}{\ensuremath{\mathbf{Real}}\xspace}
+\newcommand{\Ideal}{\ensuremath{\mathbf{Ideal}}\xspace}
 
 \newcommand{\ind}{\ensuremath{\approx}}
 \newcommand{\cind}{\stackre{\textrm{c}}{\ind}}
@@ -180,17 +168,38 @@
 % Reference macros
 %
 
-\newcommand{\refalg}[1]{Algorithm~\ref{#1}}
-\newcommand{\refapx}[1]{Appendix~\ref{#1}}
-\newcommand{\refconst}[1]{Construction~\ref{#1}}
-\newcommand{\refdef}[1]{Definition~\ref{#1}}
-\newcommand{\reffig}[1]{Figure~\ref{#1}}
-\newcommand{\reflemma}[1]{Lemma~\ref{#1}}
-\newcommand{\refline}[1]{Line~\ref{#1}}
-\newcommand{\refprot}[1]{Protocol~\ref{#1}}
-\newcommand{\refsec}[1]{Section~\ref{#1}}
-\newcommand{\refstep}[1]{Step~\ref{#1}}
-\newcommand{\refthm}[1]{Theorem~\ref{#1}}
+\ifreflinks%
+\newcommand{\sref}[2]{\hyperref[#2]{#1~\ref*{#2}}}
+\else
+\newcommand{\sref}[2]{#1~\ref{#2}}
+\fi
+
+\newcommand{\refalg}[1]{\sref{Algorithm}{#1}}
+\newcommand{\refapx}[1]{\sref{Appendix}{#1}}
+\newcommand{\refconst}[1]{\sref{Construction}{#1}}
+\newcommand{\refdef}[1]{\sref{Definition}{#1}}
+\ifreflinks%
+  \newcommand{\refeqn}[1]{\hyperref[#1]{(\ref*{#1})}}
+\else
+  \newcommand{\refeqn}[1]{\ref{#1}}
+\fi
+\newcommand{\reffact}[1]{\sref{Fact}{#1}}
+\newcommand{\reffig}[1]{\sref{Figure}{#1}}
+\newcommand{\reflemma}[1]{\sref{Lemma}{#1}}
+\newcommand{\refcor}[1]{\sref{Corollary}{#1}}
+\newcommand{\refprop}[1]{\sref{Property}{#1}}
+\newcommand{\refprot}[1]{\sref{Protocol}{#1}}
+\newcommand{\refsec}[1]{\sref{Section}{#1}}
+\newcommand{\refstep}[1]{\sref{Step}{#1}}
+\newcommand{\refthm}[1]{\sref{Theorem}{#1}}
+
+%% \newcommand{\refsteps}[2][\relax]{%
+%%   \def\tempa{}%
+%%   \@for\reserved:=#2\do{%
+%%     \edef\tempa{\tempa\ifx\tempa\empty\else~#1 \fi\ref{\reserved}}%
+%%   }%
+%%   Steps~\tempa%
+%% }
 
 %
 % Theorem macros
@@ -198,21 +207,14 @@
 
 \newtheorem{claim}{Claim}
 \newtheorem{lemma}{Lemma}
+\newtheorem*{lemma*}{Lemma}
 \newtheorem{theorem}{Theorem}
 \newtheorem*{theorem*}{Theorem}
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}
 \newtheorem{protocol}{Protocol}
 \newtheorem{vprocedure}{Procedure}
-%
-%
-%
 
-\newcommand{\Enc}{\ensuremath{\mathsf{Enc}}\xspace}
-\newcommand{\Gen}{\ensuremath{\mathsf{Gen}}\xspace}
-\newcommand{\Dec}{\ensuremath{\mathsf{Dec}}\xspace}
-
-\newcommand{\com}{\ensuremath{\mathsf{com}}\xspace}
 
 %
 % Bellare, Hoang, Rogaway notation macros
@@ -230,17 +232,178 @@
 \newcommand{\PrvInd}{{\rm PrvInd}}
 \newcommand{\PrvSim}{{\rm PrvSim}}
 
-\newcommand{\alex}[1]{\authnotec{Alex}{#1}{blue}}
-\newcommand{\jnote}[1]{\authnotec{Jon}{#1}{green}}
-\newcommand{\sgc}[1]{\authnotec{Seung Geol}{#1}{magenta}}
-\newcommand{\vnote}[1]{\authnotec{Vassilis}{#1}{red}}
+\newcommand{\Enc}{\ensuremath{\mathsf{Enc}}\xspace}
+\newcommand{\Gen}{\ensuremath{\mathsf{Gen}}\xspace}
+\newcommand{\Dec}{\ensuremath{\mathsf{Dec}}\xspace}
 
-\newcommand{\step}[2]{{\bf [#1: #2]}}
-\newcommand{\noti}{{\bar{\imath}}}
-\newcommand{\header}[1]{\noindent{\bf #1:}}
-\newcommand{\token}[1]{\begin{center}\fbox{{\bf\textcolor{red}{Token:
-          #1}}}\end{center}}
-\newcommand{\tweak}{\ensuremath{T}}
+\newcommand{\com}{\ensuremath{\mathsf{com}}\xspace}
+
+%
+% Canetti00 formalisms
+%
+
+\newcommand{\Coutput}{\ensuremath{\mathsf{output}}\xspace}
+\newcommand{\Cview}{\ensuremath{\mathsf{view}}\xspace}
+
+\newcommand{\len}{\ensuremath{\ell}\xspace}
+\newcommand{\secparam}{\ensuremath{k}\xspace}
+\newcommand{\ssecparam}{\ensuremath{s}\xspace}
+
+\newcommand{\secpar}{\secparam}
+\newcommand{\ssecpar}{\ssecparam}
+
+\newcommand{\mask}{\ensuremath{\lambda}\xspace}
+\newcommand{\boolsec}{\ensuremath{\bool^\secparam}\xspace}
+
+%
+% Vassilis' stuff
+%
+
+\newlength{\saveparindent}
+\setlength{\saveparindent}{\parindent}
+\newlength{\saveparskip}
+\setlength{\saveparskip}{\parskip}
+
+\newcounter{ctr}
+\newcounter{savectr}
+\newcounter{ectr}
+
+\newenvironment{tiret}{%
+  \begin{list}
+    {\hspace{1pt}\rule[0.5ex]{6pt}{1pt}\hfill}
+    {\labelwidth=15pt%
+      \labelsep=3pt%
+      \leftmargin=18pt%
+      \topsep=1pt%
+      \setlength{\listparindent}{\saveparindent}%
+      \setlength{\parsep}{\saveparskip}%
+      \setlength{\itemsep}{1pt}}
+}{%
+  \end{list}
+}
+
+\newenvironment{newenum}{%
+  \begin{list}
+    {{\rm\arabic{ctr}.}\hfill}
+    {\usecounter{ctr}
+      \labelwidth=17pt%
+      \labelsep=6pt%
+      \leftmargin=23pt%
+      \topsep=.5pt%
+      \setlength{\listparindent}{\saveparindent}%
+      \setlength{\parsep}{\saveparskip}%
+      \setlength{\itemsep}{5pt}}
+}{%
+  \end{list}
+}
+
+\newenvironment{neweenum}{%
+  \begin{list}
+    {{\rm\arabic{ctr}.\arabic{ectr}}\hfill}
+    {\usecounter{ectr}%
+      \labelwidth=28pt%
+      \labelsep=4pt%
+      \leftmargin=34pt%
+      \topsep=0pt%
+      \setlength{\listparindent}{\saveparindent}%
+      \setlength{\parsep}{\saveparskip}%
+      \setlength{\itemsep}{2pt}}
+}{%
+  \end{list}
+}
+
+\newenvironment{parenum}{%
+  \begin{list}
+    {{\rm(\arabic{ctr})}\hfill}
+    {\usecounter{ctr}%
+      \labelwidth=17pt%
+      \labelsep=6pt%
+      \leftmargin=23pt%
+      \topsep=.5pt%
+      \setlength{\listparindent}{\saveparindent}%
+      \setlength{\parsep}{\saveparskip}%
+      \setlength{\itemsep}{5pt}}
+}{%
+  \end{list}
+}
+
+\newenvironment{venum}{%
+  \begin{list}
+    {{\rm\arabic{ctr}.}\hfill}
+    {\usecounter{ctr}%
+      \labelwidth=17pt%
+      \labelsep=6pt%
+      \leftmargin=23pt%
+      \topsep=.5pt%
+      \setlength{\listparindent}{\saveparindent}%
+      \setlength{\parsep}{\saveparskip}%
+      \setlength{\itemsep}{1pt}}
+}{%
+  \end{list}
+}
+
+\newenvironment{nfbox}[1]{
+  \begin{center}
+    \small
+    \begin{framed}
+      \begin{minipage}{.95\linewidth}
+          #1
+}{%
+      \end{minipage}
+    \end{framed}
+  \end{center}
+}
+
+%% \newenvironment{ffbox}[1]{
+%%   \begin{figure}[!ht]
+%%     \small
+%%     \medskip
+%%     \begin{minipage}{.95\linewidth}
+%%       #1
+%% }{%
+%%   \medskip
+%%     \end{minipage}
+%%   \end{figure}
+%% }
+
+\newenvironment{nfprot}[2]{
+  \begin{center}
+    \begin{framed}
+      \begin{minipage}{.95\linewidth}
+        \small
+        {\begin{center}{\bf Protocol} #1 \end{center}}
+        #2
+}{%
+  \smallskip
+      \end{minipage}
+    \end{framed}
+  \end{center}
+}
+
+\newenvironment{nffunc}[2]{
+  \begin{center}
+    \small
+    \begin{framed}
+      \begin{minipage}{.95\linewidth}
+        \underline{{\bf Functionality} #1}
+        \medskip
+        #2
+}{%
+      \end{minipage}
+    \end{framed}
+  \end{center}
+}
+
+
+%% \newenvironment{fprot}[2]{
+%%   \begin{figure}[!ht]
+%%     \begin{nfprot}{#1}
+%%       #2
+%% }{%
+%%     \end{nfprot}
+%%     \vspace{-2ex}
+%%   \end{figure}
+%% }
 
 \newenvironment{citemize}{
   \begin{itemize}
@@ -252,29 +415,53 @@
 }
 
 %
-% Canetti00 formalisms
+% other
 %
 
-
-\newcommand{\Coutput}{\ensuremath{\mathsf{output}}}
-\newcommand{\Cview}{\ensuremath{\mathsf{view}}}
-
-\newcommand{\party}[1]{\ensuremath{^{({#1})}}}
-
-\newcommand{\len}{\ensuremath{\ell}}
-\newcommand{\secparam}{\ensuremath{k}}
-\newcommand{\ssecparam}{\ensuremath{s}}
-\newcommand{\mask}{\ensuremath{\lambda}\xspace}
-\newcommand{\boolsec}{\ensuremath{\bool^\secparam}\xspace}
+\newcommand{\cancel}[1]{}
 
 \newcommand{\C}{\ensuremath{C}\xspace}
-\newcommand{\GC}{\ensuremath{GC}}
+\newcommand{\GC}{\ensuremath{GC}\xspace}
 
-\newcommand{\nand}{\ensuremath{\otimes}\xspace}
-\newcommand{\enc}{\ensuremath{{\tt Enc}}\xspace}
+\newcommand{\hats}{\hat{s}}
 
+% functionalities
+\newcommand{\func}[1][\relax]{\ensuremath{\mathcal{F}_\mathbf{#1}}\xspace}
+\newcommand{\Fabit}{\func[aBit]}
+\newcommand{\Fand}{\func[and]}
+\newcommand{\Fgate}{\func[gate]}
+\newcommand{\Fosh}{\func[oshare]}
+\newcommand{\Fot}{\func[ot]}
+\newcommand{\Frand}{\func[rand]}
+\newcommand{\Fss}{\func[ss]}
+
+% protocols
+\newcommand{\Prot}[1][\relax]{\ensuremath{\Pi_\mathbf{#1}}\xspace}
+\newcommand{\ProtSSname}{\ensuremath{\Pi_\mathbf{SS}}\xspace}
+\newcommand{\Prottwopcname}{\ensuremath{\Pi_\mathbf{2PC}}\xspace}
+\newcommand{\ProtOSHname}{\ensuremath{\Pi_\mathbf{oshare}}\xspace}
+\newcommand{\ProtOSHmname}{\ensuremath{\Pi_\mathbf{oshare-m}}\xspace}
+%% \newcommand{\ProtRANDname}{\ensuremath{\Pi_\mathbf{RAND}}\xspace}
+%% \newcommand{\ProtCONSname}{\ensuremath{\Pi_\mathbf{CONS}}\xspace}
+%% \newcommand{\ProtGATEname}{\ensuremath{\Pi_\mathbf{GATE}}\xspace}
+%% \newcommand{\ProtOSUname}{\ensuremath{\Pi_\mathbf{OShuffle}}\xspace}
+%% \newcommand{\ProtOSUMname}{\ensuremath{\Pi_\mathbf{OShuffle-m}}\xspace}
+\newcommand{\ProtOpenname}{\ensuremath{\Pi_\mathbf{Open}}\xspace}
+\newcommand{\ProtCircEval}{\ensuremath{\mathbf{CircEval}}\xspace}
 \newcommand{\Pgc}{\ensuremath{\Pi_\mathbf{GC}}\xspace}
 \newcommand{\Pthree}{\ensuremath{\Pi_\mathbf{3PC}}\xspace}
+\newcommand{\Paot}{\Prot[aOT]}
+\newcommand{\Pot}{\Prot[ot]}
+\newcommand{\Potm}{\Prot[ot-m]}
+\newcommand{\Ptwopc}{\Prot[2PC]}
+
+\newcommand{\vcm}{\ensuremath{\odot}} % I use this for multiplication
+                                % of a string with a bit
+\newcommand{\vbxor}{\ensuremath{+}} %I use this fir bitwise-XOR of two strings
+\newcommand{\vxor}{\ensuremath{\oplus}} %I use this for xor of bits
+\newcommand{\vcompl}[1]{\ensuremath{\bar{#1}}} %I use this for the
+                                %complement of bits
+
 
 \newcommand{\vcomment}[1]{\ \\ \noindent {\color{red}$@$Vassilis: #1}\
   \\}
@@ -294,177 +481,25 @@
 
 \newcommand{\Fail}[1]{\ensuremath{\mathsf{Fail}_{#1}}}
 
+\newcommand{\sh}[1]{\Brac{#1}}
+\newcommand{\bsh}[1]{\angles{#1}}
+\newcommand{\ash}[1]{[\![#1]\!]}
+\newcommand{\s}[1]{\ensuremath{\hat{#1}}\xspace}
+\newcommand{\Aenc}{\ensuremath{\mathcal{A}^{\textbf{Enc}}}\xspace}
 
-%%%%%%% Vassilis Lists %%%%%% 
+\newcommand{\subkey}[2]{\ensuremath{s^{#1}_{#2}}\xspace}
 
-\newlength{\saveparindent}
-\setlength{\saveparindent}{\parindent}
-\newlength{\saveparskip}
-\setlength{\saveparskip}{\parskip}
+\newcommand{\alex}[1]{\authnotec{Alex}{#1}{blue}}
+\newcommand{\jnote}[1]{\authnotec{Jon}{#1}{green}}
+\newcommand{\sgc}[1]{\authnotec{Seung Geol}{#1}{magenta}}
+\newcommand{\vnote}[1]{\authnotec{Vassilis}{#1}{red}}
 
-
-\newcounter{ctr}
-\newcounter{savectr}
-\newcounter{ectr}
-
-\newenvironment{tiret}{%
-\begin{list}{\hspace{1pt}\rule[0.5ex]{6pt}{1pt}\hfill}{\labelwidth=15pt%
-\labelsep=3pt \leftmargin=18pt \topsep=1pt%
-\setlength{\listparindent}{\saveparindent}%
-\setlength{\parsep}{\saveparskip}%
-\setlength{\itemsep}{1pt}}}{\end{list}}
-
-
-\newenvironment{newenum}{%
-\begin{list}{{\rm \arabic{ctr}.}\hfill}{\usecounter{ctr}\labelwidth=17pt%
-\labelsep=6pt \leftmargin=23pt \topsep=.5pt%
-\setlength{\listparindent}{\saveparindent}%
-\setlength{\parsep}{\saveparskip}%
-\setlength{\itemsep}{5pt} }}{\end{list}}
-
-\newenvironment{neweenum}{%
-\begin{list}{{\rm \arabic{ctr}.\arabic{ectr}}\hfill}{\usecounter{ectr}%
-\labelwidth=28pt\labelsep=4pt \leftmargin=34pt \topsep=0pt%
-\setlength{\listparindent}{\saveparindent}%
-\setlength{\parsep}{\saveparskip}%
-\setlength{\itemsep}{2pt} }}{\end{list}}
-
-\newenvironment{parenum}{%
-\begin{list}{{\rm (\arabic{ctr})}\hfill}{\usecounter{ctr}\labelwidth=17pt%
-\labelsep=6pt \leftmargin=23pt \topsep=.5pt%
-\setlength{\listparindent}{\saveparindent}%
-\setlength{\parsep}{\saveparskip}%
-\setlength{\itemsep}{5pt} }}{\end{list}}
-
-
-
-
-\newenvironment{venum}{
-\begin{list}{{\rm \arabic{ctr}.}\hfill}{\usecounter{ctr}\labelwidth=17pt%
-\labelsep=6pt \leftmargin=23pt \topsep=.5pt%
-\setlength{\listparindent}{\saveparindent}%
-\setlength{\parsep}{\saveparskip}%
-\setlength{\itemsep}{1pt} }}{\end{list}}
-
-
-\newenvironment{nfbox}[1][]{
-\begin{center}\small
-  \begin{tabular}{|ll|}\hline
-        \hspace{.3ex}\begin{minipage}{.95\linewidth}\vspace{0.5ex}
-          % {\begin{center}{\bf Protocol} #2 \end{center}}
-          #1 % \begin{enumerate}\setlength{\itemsep}{2mm} \setlength{\parskip}{0pt}
-% \setlength{\parsep}{0pt}
-%\vspace{-1ex}%\vspace{-3ex}
-          }{%
-%          \end{enumerate}
-          %\vspace{-1ex}
-          \smallskip
-        \end{minipage}& \\
-        \hline
-  \end{tabular}
-  \end{center}    %\vspace{-5ex}
-}
-
-\newenvironment{ffbox}[1][]{
-\begin{figure}[!ht]
-\begin{center}\small
-  \begin{tabular}{ll}%\hline
-        \hspace{.3ex}\begin{minipage}{.95\linewidth}\vspace{0.5ex}
-          % {\begin{center}{\bf Protocol} #2 \end{center}}
-          #1 % \begin{enumerate}\setlength{\itemsep}{2mm} \setlength{\parskip}{0pt}
-% \setlength{\parsep}{0pt}
-%\vspace{-1ex}%\vspace{-3ex}
-          }{%
-%          \end{enumerate}
-          %\vspace{-1ex}
-          \smallskip
-        \end{minipage}& \\
- %       \hline
-  \end{tabular}
-  \end{center}
-\end{figure}    %\vspace{-5ex}
-}
-
-
-
-
-\newenvironment{nfprot}[3][]{
-  \begin{center}\small
-  \begin{tabular}{|ll|}\hline
-        \hspace{.3ex}\begin{minipage}{.95\linewidth}\vspace{0.5ex}
-          {\begin{center}{\bf Protocol} #2 \end{center}}\vspace{-2ex}#3 % \begin{enumerate}\setlength{\itemsep}{2mm} \setlength{\parskip}{0pt}
-% \setlength{\parsep}{0pt}
-%\vspace{-1ex}%\vspace{-3ex}
-          }{%
-%          \end{enumerate}
-          \vspace{-1ex}
-          \smallskip
-        \end{minipage}& \\
-        \hline
-  \end{tabular}
-  \end{center}
-}
-
-\newenvironment{fprot}[3][]{
-\begin{figure}[!ht]
-\begin{center}\small
-  \begin{tabular}{ll}%\hline
-        \hspace{.3ex}\begin{minipage}{.95\linewidth}\vspace{0.5ex}
-          {\begin{center}{\bf Protocol} #2 \end{center}}\vspace{-2ex}#3 % \begin{enumerate}\setlength{\itemsep}{2mm} \setlength{\parskip}{0pt}
-% \setlength{\parsep}{0pt}
-%\vspace{-1ex}%\vspace{-3ex}
-          }{%
-%          \end{enumerate}
-          \vspace{-1ex}
-          \smallskip
-        \end{minipage}& \\
-    %    \hline
-  \end{tabular}
-  \end{center}
-\end{figure}   
-}
-
-
-\newcommand{\cancel}[1]{}
-
-\newcommand{\hats}{\hat{s}}
-\newcommand{\Fand}{\ensuremath{\mathcal{F}_\mathbf{and}}\xspace}
-\newcommand{\Frand}{\ensuremath{\mathcal{F}_\mathbf{rand}}\xspace}
-\newcommand{\Fcons}[1][\relax]{\ensuremath{\mathcal{F}_\mathbf{cons}^{#1}}\xspace}
-\newcommand{\Fdeal}{\ensuremath{\mathcal{F}_\mathbf{deal}}\xspace}
-\newcommand{\Fgate}{\ensuremath{\mathcal{F}_\mathbf{gate}}\xspace}
-\newcommand{\Fgc}{\ensuremath{\mathcal{F}_\mathbf{gc}}\xspace}
-\newcommand{\Fosh}{\ensuremath{\mathcal{F}_\mathbf{oshare}}\xspace}
-\newcommand{\Foshm}{\ensuremath{\mathcal{F}_\mathbf{oshare-m}}\xspace}
-\newcommand{\Fosu}{\ensuremath{\mathcal{F}_\mathbf{oshuffle}}\xspace}
-\newcommand{\Fosum}{\ensuremath{\mathcal{F}_\mathbf{oshuffle-m}}\xspace}
-\newcommand{\Fot}{\ensuremath{\mathcal{F}_\mathbf{ot}}\xspace}
-\newcommand{\Fss}{\ensuremath{\mathcal{F}_\mathbf{ss}}\xspace}
-\newcommand{\Fvss}{\ensuremath{\mathcal{F}_\mathbf{vss}}\xspace}
-\newcommand{\Fcf}{\ensuremath{\mathcal{F}_\mathbf{cf}}\xspace}
-\newcommand{\Focom}{\ensuremath{\mathcal{F}_\mathbf{ocom}}\xspace}
-\newcommand{\fcg}{\Fgc\xspace}
-\newcommand{\func}[1][\relax]{\ensuremath{\mathcal{F}_{#1}}\xspace}
-
-
-\newcommand{\ProtSSname}{\ensuremath{\Pi_\mathbf{SS}}\xspace}
-\newcommand{\Prottwopcname}{\ensuremath{\Pi_\mathbf{2PC}}\xspace}
-\newcommand{\ProtOSHname}{\ensuremath{\Pi_\mathbf{oshare}}\xspace}
-\newcommand{\ProtOSHmname}{\ensuremath{\Pi_\mathbf{oshare-m}}\xspace}
-\newcommand{\ProtRANDname}{\ensuremath{\Pi_\mathbf{RAND}}\xspace}
-\newcommand{\ProtCONSname}{\ensuremath{\Pi_\mathbf{CONS}}\xspace}
-\newcommand{\ProtGATEname}{\ensuremath{\Pi_\mathbf{GATE}}\xspace}
-\newcommand{\ProtOSUname}{\ensuremath{\Pi_\mathbf{OShuffle}}\xspace}
-\newcommand{\ProtOSUMname}{\ensuremath{\Pi_\mathbf{OShuffle-m}}\xspace}
-
-\newcommand{\secpar}{\secparam}
-\newcommand{\vcm}{\ensuremath{\odot}} % I use this for multiplication
-                                % of a string with a bit
-\newcommand{\vbxor}{\ensuremath{+}} %I use this fir bitwise-XOR of two strings
-\newcommand{\vxor}{\ensuremath{\oplus}} %I use this for xor of bits
-\newcommand{\vcompl}[1]{\ensuremath{\bar{#1}}} %I use this for the
-                                %complement of bits
-\newcommand{\ProtOpenname}{\ensuremath{\Pi_\mathbf{Open}}\xspace}
-\newcommand{\ProtCircEval}{\ensuremath{\mathbf{CircEval}}\xspace}
+\newcommand{\party}[1]{\ensuremath{^{(#1)}}}
+\newcommand{\step}[2]{{\bf [#1: #2]}}
+\newcommand{\noti}{{\bar{\imath}}}
+\newcommand{\header}[1]{\noindent{\bf #1:}}
+\newcommand{\token}[1]{\begin{center}\fbox{{\bf\textcolor{red}{Token:
+          #1}}}\end{center}}
+\newcommand{\tweak}{\ensuremath{T}}
 
 \endinput
