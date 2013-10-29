@@ -43,6 +43,7 @@
 \ProcessOptions%
 
 \RequirePackage{amsfonts,amsmath,amssymb,amsthm}
+\RequirePackage{url}
 \RequirePackage{xspace}
 
 \ifreflinks
@@ -452,5 +453,11 @@
 \newcommand{\pfn}{\ensuremath{P}}
 
 \newcommand{\Fail}[1]{\ensuremath{\mathsf{Fail}_{#1}}}
+
+%
+% bibtex stuff
+%
+
+\newcommand{\FullVersion}[1]{Full version available at \url{#1}}
 
 \endinput
