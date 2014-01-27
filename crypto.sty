@@ -349,20 +349,29 @@
 %   \end{list}
 % }
 
-% \newenvironment{venum}{%
-%   \begin{list}
-%     {{\rm\arabic{ctr}.}\hfill}
-%     {\usecounter{ctr}%
-%       \labelwidth=17pt%
-%       \labelsep=6pt%
-%       \leftmargin=23pt%
-%       \topsep=.5pt%
-%       %% \setlength{\listparindent}{\saveparindent}%
-%       \setlength{\parsep}{\saveparskip}%
-%       \setlength{\itemsep}{1pt}}
-% }{%
-%   \end{list}
-% }
+\newenvironment{venum}{%
+  \begin{list}
+    {{\rm\arabic{ctr}.}\hfill}
+    {\usecounter{ctr}%
+      \labelwidth=17pt%
+      \labelsep=6pt%
+      \leftmargin=23pt%
+      \topsep=.5pt%
+      %% \setlength{\listparindent}{\saveparindent}%
+      \setlength{\parsep}{\saveparskip}%
+      \setlength{\itemsep}{1pt}}
+}{%
+  \end{list}
+}
+
+\newenvironment{cenumerate}{
+  \begin{enumerate}
+    \setlength{\itemsep}{1pt}
+    \setlength{\parskip}{0pt}
+    \setlength{\parsep}{0pt}
+}{
+  \end{enumerate}
+}
 
 \newenvironment{nfbox}[1]{
   \begin{center}
@@ -455,6 +464,25 @@
 \newcommand{\rfn}{\ensuremath{R}}
 \newcommand{\gfn}{\ensuremath{G}}
 \newcommand{\pfn}{\ensuremath{P}}
+
+\newcommand{\C}{\ensuremath{C}\xspace}
+\newcommand{\sh}[1]{\Brac{#1}}
+\newcommand{\bsh}[1]{\angles{#1}}
+\newcommand{\ash}[1]{[\![#1]\!]}
+\newcommand{\s}[1]{\ensuremath{\hat{#1}}\xspace}
+\newcommand{\Aenc}{\ensuremath{\mathcal{A}^{\textbf{Enc}}}\xspace}
+\newcommand{\party}[1]{\ensuremath{^{(#1)}}}
+\newcommand{\step}[2]{{\bf [#1: #2]}}
+\newcommand{\noti}{{\bar{\imath}}}
+\newcommand{\header}[1]{\noindent{\bf #1:}}
+%% \newcommand{\token}[1]{\begin{center}\fbox{{\bf\textcolor{red}{Token:
+%%           #1}}}\end{center}}
+\newcommand{\tweak}{\ensuremath{T}}
+
+\newcommand{\bbsh}[1]{\bsh{#1}}
+\newcommand{\mtag}[1]{\ensuremath{t_{#1}}\xspace}
+\newcommand{\mkey}[1]{\ensuremath{k_{#1}}\xspace}
+\newcommand{\mver}{\ensuremath{\mathsf{Verify}}\xspace}
 
 \newcommand{\Fail}[1]{\ensuremath{\mathsf{Fail}_{#1}}}
 
