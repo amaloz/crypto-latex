@@ -1,12 +1,12 @@
 crypto-latex
 ============
 
-Style file for crypto papers.  To use:
+Style file for crypto papers.
 
-Within the directory containing your latex document, run
+Within the directory containing your latex document, run:
 
-  git clone https://github.com/amaloz/crypto-latex crypto
+> git clone https://github.com/amaloz/crypto-latex crypto
   
 Then, within your latex document, you can put the following:
 
-  \usepackage{crypto/crypto}
+> \usepackage{crypto/crypto}
