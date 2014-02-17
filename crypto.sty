@@ -228,12 +228,15 @@
 %
 
 \newtheorem{claim}{Claim}
-% \newtheorem{lemma}{Lemma}
+\@ifclassloaded{beamer}{}
+{\newtheorem{lemma}{Lemma}}
 \newtheorem*{lemma*}{Lemma}
-% \newtheorem{theorem}{Theorem}
+\@ifclassloaded{beamer}{}
+{\newtheorem{theorem}{Theorem}}
 \newtheorem*{theorem*}{Theorem}
 \theoremstyle{definition}
-% \newtheorem{definition}{Definition}
+\@ifclassloaded{beamer}{}
+{\newtheorem{definition}{Definition}}
 \newtheorem{protocol}{Protocol}
 
 
