@@ -6,29 +6,34 @@
 
 \def\filename{crypto/crypto}
 \def\fileversion{v0.1}
-\def\filedate{2013/09/27}
+\def\filedate{2014/02/24}
 
 \NeedsTeXFormat{LaTeX2e}
 \AtEndOfPackage{\ProvidesPackage{\filename}
   [\filedate\space\fileversion\space(Alex J Malozemoff)]}
 \typeout{Package `\filename', \fileversion, <\filedate>}
 
+\RequirePackage{kvoptions}
+
+\SetupKeyvalOptions{
+  family=crypto,
+  prefix=crypto@
+}
+
 %
 % OPTION: color
 %
-\newif\ifcolor%
-\colorfalse%
-\DeclareOption{color}{%
-  \colortrue%
+\newif\if@color\@colorfalse%
+\DeclareVoidOption{color}{%
+  \@colortrue%
 }
 
 %
 % OPTION: reflinks
 %
-\newif\ifreflinks%
-\reflinksfalse%
-\DeclareOption{reflinks}{%
-  \reflinkstrue%
+\newif\if@reflinks\@reflinksfalse%
+\DeclareVoidOption{reflinks}{%
+  \@reflinkstrue%
 }
 
 %
@@ -36,32 +41,45 @@
 %
 \newif\ifsubmission%
 \submissionfalse%
-\DeclareOption{submission}{%
+\DeclareVoidOption{submission}{%
   \submissiontrue%
 }
 
-\ProcessOptions%
+% \ProcessOptions%
+
+%
+% OPTION: security parameter
+%
+\DeclareStringOption[k]{secparam}
+\define@key{crypto}{secparam}
+{\newcommand{\secparam}{\ensuremath{#1}\xspace}}
+
+\ProcessKeyvalOptions{crypto}
 
 \RequirePackage{amsfonts,amsmath,amssymb,amsthm}
 \RequirePackage{url}
 \RequirePackage{xspace}
 
-\ifreflinks
+\if@reflinks
   \RequirePackage[colorlinks=true,citecolor=cyan,linkcolor=blue]{hyperref}
 \fi
 
 \ifsubmission%
   \newcommand{\authnote}[2]{}
   \newcommand{\TODO}[1]{}
+  \newcommand{\FINISH}{}
   \newcommand{\verified}{}
 \else%
-  \ifcolor%
+  \if@color%
     \RequirePackage{color}
     \newcommand{\authnote}[3]{\textcolor{#3}{\footnotesize\textbf{[#1: #2]}}}
-    \newcommand{\TODO}[1]{\noindent\textcolor{red}{\footnotesize\textbf{TODO\@: {#1}}}}
+    \newcommand{\TODO}[1]{\noindent\textcolor{red}{\footnotesize\textbf{TODO\@:
+          {#1}}}}
+    \newcommand{\FINISH}{\textcolor{red}{\footnotesize\textbf{FINISH}}}
   \else
     \newcommand{\authnote}[3]{{\footnotesize\textbf{[#1: #2]}}}
     \newcommand{\TODO}[1]{\noindent{\footnotesize\textbf{TODO\@: {#1}}}}
+    \newcommand{\FINISH}{\footnotesize\textbf{FINISH}}
   \fi
 
   \newcommand{\verified}[1]{\begin{center}\fbox{{\bf\small Verified: #1}}\end{center}}
@@ -163,18 +181,17 @@
 \newcommand{\ppt}{\ensuremath{\textsc{ppt}}\xspace}
 
 \newcommand{\Party}[1][\relax]{\ensuremath{P_{#1}}\xspace}
+\newcommand{\Partym}[1][\relax]{\ensuremath{P_{#1}^*}\xspace}
 \newcommand{\PA}{\Party[1]}
 \newcommand{\PB}{\Party[2]}
 \newcommand{\PC}{\Party[3]}
-\newcommand{\PAm}{\ensuremath{{P_1^*}}\xspace}
-\newcommand{\PBm}{\ensuremath{{P_2^*}}\xspace}
-\newcommand{\PCm}{\ensuremath{{P_3^*}}\xspace}
-
-\newcommand{\Zp}{\ensuremath{\ZZ_p}}
-\newcommand{\Zq}{\ensuremath{\ZZ_q}}
+\newcommand{\PAm}{\Partym[1]}
+\newcommand{\PBm}{\Partym[2]}
+\newcommand{\PCm}{\Partym[3]}
 
 \newcommand{\Sim}[1][\relax]{\ensuremath{\SSS_{#1}}\xspace}
 \newcommand{\Adv}[1][\relax]{\ensuremath{\mathcal{A}_{#1}}\xspace}
+\newcommand{\Oracle}{\ensuremath{\mathcal{O}}\xspace}
 
 \newcommand{\Hybrid}[1][\relax]{\ensuremath{\mathbf{Hybrid_{#1}}}\xspace}
 \newcommand{\Real}{\ensuremath{\mathbf{Real}}\xspace}
@@ -184,11 +201,14 @@
 \newcommand{\cind}{\stackrel{\textrm{c}}{\ind}}
 \newcommand{\dind}{\stackrel{\textrm{d}}{\ind}}
 
+\newcommand{\Zp}{\ensuremath{\ZZ_p}}
+\newcommand{\Zq}{\ensuremath{\ZZ_q}}
+
 %
 % Reference macros
 %
 
-\ifreflinks%
+\if@reflinks%
 \newcommand{\sref}[2]{\hyperref[#2]{#1~\ref*{#2}}}
 \else
 \newcommand{\sref}[2]{#1~\ref{#2}}
@@ -198,12 +218,7 @@
 \newcommand{\refapx}[1]{\sref{Appendix}{#1}}
 \newcommand{\refconst}[1]{\sref{Construction}{#1}}
 \newcommand{\refdef}[1]{\sref{Definition}{#1}}
-\ifreflinks%
-  \newcommand{\refeqn}[1]{\ref{#1}}
-  % \newcommand{\refeqn}[1]{\hyperref[#1]{(\ref*{#1})}}
-\else
-  \newcommand{\refeqn}[1]{\ref{#1}}
-\fi
+\newcommand{\refeqn}[1]{\ref{#1}}
 \newcommand{\reffact}[1]{\sref{Fact}{#1}}
 \newcommand{\reffig}[1]{\sref{Figure}{#1}}
 \newcommand{\reflemma}[1]{\sref{Lemma}{#1}}
@@ -252,21 +267,23 @@
 \newcommand{\sk}{{\ensuremath{sk}}\xspace}
 
 \newcommand{\com}{\ensuremath{\mathsf{com}}\xspace}
-
 \newcommand{\proc}{{\ensuremath{\mathbf{procedure}}}\xspace}
 
-\newcommand{\Coutput}{\ensuremath{\mathsf{output}}\xspace}
-\newcommand{\Cview}{\ensuremath{\mathsf{view}}\xspace}
-
 \newcommand{\len}{\ensuremath{\ell}\xspace}
-\newcommand{\secparam}{\ensuremath{k}\xspace}
-\newcommand{\ssecparam}{\ensuremath{s}\xspace}
 
+% \newcommand{\secparam}{\ensuremath{k}\xspace}
 \newcommand{\secpar}{\secparam}
+\newcommand{\ssecparam}{\ensuremath{s}\xspace}
 \newcommand{\ssecpar}{\ssecparam}
 
 \newcommand{\mask}{\ensuremath{\lambda}\xspace}
+
 \newcommand{\boolsec}{\ensuremath{\bool^\secparam}\xspace}
+\newcommand{\onesec}{\ensuremath{1^\secparam}\xspace}
+
+\newcommand{\iO}{{\ensuremath{i\mathcal{O}}}\xspace}
+
+\newcommand{\indcpa}{\textsf{IND-CPA}\xspace}
 
 %
 % Environments
