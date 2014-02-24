@@ -223,10 +223,6 @@
 %%   Steps~\tempa%
 %% }
 
-%
-% Theorem macros
-%
-
 \newtheorem{claim}{Claim}
 \@ifclassloaded{beamer}{}
 {\newtheorem{lemma}{Lemma}}
@@ -239,33 +235,25 @@
 {\newtheorem{definition}{Definition}}
 \newtheorem{protocol}{Protocol}
 
+\newcommand{\Gb}{{\ensuremath{\mathsf{Garble}}}\xspace}
+\newcommand{\En}{{\ensuremath{\mathsf{Encrypt}}}\xspace}
+\newcommand{\De}{{\ensuremath{\mathsf{Decrypt}}}\xspace}
+\newcommand{\ev}{{\ensuremath{\mathsf{eval}}}\xspace}
+\newcommand{\Ev}{{\ensuremath{\mathsf{Eval}}}\xspace}
 
-%
-% Bellare, Hoang, Rogaway notation macros
-%
+\newcommand{\PrvInd}{{\ensuremath{\mathrm{PrvInd}}}\xspace}
+\newcommand{\PrvSim}{{\ensuremath{\mathrm{PrvSim}}}\xspace}
 
-\newcommand{\Gb}{\ensuremath{\mathsf{Garble}}}
-\newcommand{\En}{\ensuremath{\mathsf{Encrypt}}}
-\newcommand{\De}{\ensuremath{\mathsf{Decrypt}}}
-\newcommand{\ev}{\ensuremath{\mathsf{eval}}}
-\newcommand{\Ev}{\ensuremath{\mathsf{Eval}}}
-
-\newcommand{\GS}{\ensuremath{\mathsf{GS}}}
-
-\newcommand{\proc}{\ensuremath{\mathbf{procedure}}}
-\newcommand{\PrvInd}{{\rm PrvInd}}
-\newcommand{\PrvSim}{{\rm PrvSim}}
-
-\newcommand{\KeyGen}{\ensuremath{\mathsf{KeyGen}}\xspace}
-\newcommand{\Gen}{\ensuremath{\mathsf{Gen}}\xspace}
-\newcommand{\Enc}{\ensuremath{\mathsf{Enc}}\xspace}
-\newcommand{\Dec}{\ensuremath{\mathsf{Dec}}\xspace}
+\newcommand{\KeyGen}{{\ensuremath{\mathsf{KeyGen}}}\xspace}
+\newcommand{\Gen}{{\ensuremath{\mathsf{Gen}}}\xspace}
+\newcommand{\Enc}{{\ensuremath{\mathsf{Enc}}}\xspace}
+\newcommand{\Dec}{{\ensuremath{\mathsf{Dec}}}\xspace}
+\newcommand{\pk}{{\ensuremath{pk}}\xspace}
+\newcommand{\sk}{{\ensuremath{sk}}\xspace}
 
 \newcommand{\com}{\ensuremath{\mathsf{com}}\xspace}
 
-%
-% Canetti00 formalisms
-%
+\newcommand{\proc}{{\ensuremath{\mathbf{procedure}}}\xspace}
 
 \newcommand{\Coutput}{\ensuremath{\mathsf{output}}\xspace}
 \newcommand{\Cview}{\ensuremath{\mathsf{view}}\xspace}
@@ -306,51 +294,6 @@
 }{%
   \end{list}
 }
-
-% \newenvironment{newenum}{%
-%   \begin{list}
-%     {{\rm\arabic{ctr}.}\hfill}
-%     {\usecounter{ctr}
-%       \labelwidth=17pt%
-%       \labelsep=6pt%
-%       \leftmargin=23pt%
-%       \topsep=.5pt%
-%       \setlength{\listparindent}{\saveparindent}%
-%       \setlength{\parsep}{\saveparskip}%
-%       \setlength{\itemsep}{5pt}}
-% }{%
-%   \end{list}
-% }
-
-% \newenvironment{neweenum}{%
-%   \begin{list}
-%     {{\rm\arabic{ctr}.\arabic{ectr}}\hfill}
-%     {\usecounter{ectr}%
-%       \labelwidth=28pt%
-%       \labelsep=4pt%
-%       \leftmargin=34pt%
-%       \topsep=0pt%
-%       \setlength{\listparindent}{\saveparindent}%
-%       \setlength{\parsep}{\saveparskip}%
-%       \setlength{\itemsep}{2pt}}
-% }{%
-%   \end{list}
-% }
-
-% \newenvironment{parenum}{%
-%   \begin{list}
-%     {{\rm(\arabic{ctr})}\hfill}
-%     {\usecounter{ctr}%
-%       \labelwidth=17pt%
-%       \labelsep=6pt%
-%       \leftmargin=23pt%
-%       \topsep=.5pt%
-%       \setlength{\listparindent}{\saveparindent}%
-%       \setlength{\parsep}{\saveparskip}%
-%       \setlength{\itemsep}{5pt}}
-% }{%
-%   \end{list}
-% }
 
 \newenvironment{venum}{%
   \begin{list}
@@ -428,33 +371,10 @@
   \end{center}
 }
 
-% \newenvironment{citemize}{
-%   \begin{itemize}
-%     \setlength{\itemsep}{1pt}
-%     \setlength{\parskip}{0pt}
-%     \setlength{\parsep}{0pt}
-% }{
-%   \end{itemize}
-% }
-
-% \newenvironment{cenumerate}{
-%   \begin{enumerate}
-%     \setlength{\itemsep}{1pt}
-%     \setlength{\parskip}{0pt}
-%     \setlength{\parsep}{0pt}
-% }{
-%   \end{enumerate}
-% }
-
-%
-% other
-%
-
 \newcommand{\cancel}[1]{}
 
 % functionalities
-\newcommand{\func}[1][\relax]{\ensuremath{\mathcal{F}_\mathbf{#1}}\xspace}
-
+\newcommand{\Func}[1][\relax]{\ensuremath{\mathcal{F}_\mathbf{#1}}\xspace}
 % protocols
 \newcommand{\Prot}[1][\relax]{\ensuremath{\Pi_\mathbf{#1}}\xspace}
 
