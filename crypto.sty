@@ -6,65 +6,71 @@
 
 \def\filename{crypto/crypto}
 \def\fileversion{v0.1}
-\def\filedate{2013/09/27}
+\def\filedate{2014/02/24}
+\def\fileauthor{Alex J Malozemoff}
 
 \NeedsTeXFormat{LaTeX2e}
 \AtEndOfPackage{\ProvidesPackage{\filename}
-  [\filedate\space\fileversion\space(Alex J Malozemoff)]}
+  [\filedate\space\fileversion\space(\fileauthor)]}
 \typeout{Package `\filename', \fileversion, <\filedate>}
 
-%
-% OPTION: color
-%
-\newif\ifcolor%
-\colorfalse%
-\DeclareOption{color}{%
-  \colortrue%
+\RequirePackage{kvoptions}
+
+\SetupKeyvalOptions{
+  family=crypto,
+  prefix=crypto@
 }
 
-%
-% OPTION: reflinks
-%
-\newif\ifreflinks%
-\reflinksfalse%
-\DeclareOption{reflinks}{%
-  \reflinkstrue%
-}
+\DeclareBoolOption[false]{color}
+\DeclareBoolOption[false]{draft}
+\DeclareBoolOption[false]{reflinks}
+\DeclareBoolOption[false]{submission}
+\DeclareStringOption[k]{secparam}
+\define@key{crypto}{secparam}
+{\newcommand{\secparam}{{\ensuremath{#1}}\xspace}}
 
-%
-% OPTION: submission
-%
-\newif\ifsubmission%
-\submissionfalse%
-\DeclareOption{submission}{%
-  \submissiontrue%
-}
-
-\ProcessOptions%
+\ProcessKeyvalOptions{crypto}
 
 \RequirePackage{amsfonts,amsmath,amssymb,amsthm}
 \RequirePackage{url}
 \RequirePackage{xspace}
 
-\ifreflinks
-  \RequirePackage[colorlinks=true,citecolor=cyan,linkcolor=blue]{hyperref}
-\fi
-
-\ifsubmission%
-  \newcommand{\authnote}[2]{}
-  \newcommand{\TODO}[1]{}
-  \newcommand{\verified}{}
+\ifcrypto@reflinks%
+\ifcrypto@color%
+\RequirePackage[colorlinks=true,citecolor=cyan,linkcolor=blue]{hyperref}
 \else%
-  \ifcolor%
-    \RequirePackage{color}
-    \newcommand{\authnote}[3]{\textcolor{#3}{\footnotesize\textbf{[#1: #2]}}}
-    \newcommand{\TODO}[1]{\noindent\textcolor{red}{\footnotesize\textbf{TODO\@: {#1}}}}
-  \else
-    \newcommand{\authnote}[3]{{\footnotesize\textbf{[#1: #2]}}}
-    \newcommand{\TODO}[1]{\noindent{\footnotesize\textbf{TODO\@: {#1}}}}
-  \fi
+\RequirePackage{hyperref}
+\fi%
+\fi%
 
-  \newcommand{\verified}[1]{\begin{center}\fbox{{\bf\small Verified: #1}}\end{center}}
+\ifcrypto@draft%
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead{}
+\chead{--- DRAFT ---}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\let\ps@plain\ps@fancy
+\fi%
+
+\ifcrypto@submission%
+\newcommand{\authnote}[2]{}
+\newcommand{\TODO}[1]{}
+\newcommand{\FINISH}{}
+\newcommand{\verified}{}
+\else%
+\ifcrypto@color%
+\RequirePackage{color}
+\newcommand{\authnote}[3]{\textcolor{#3}{\footnotesize\textbf{[#1: #2]}}}
+\newcommand{\TODO}[1]{\noindent\textcolor{red}{\footnotesize\textbf{TODO\@:
+      {#1}}}}
+\newcommand{\FINISH}{\textcolor{red}{\footnotesize\textbf{FINISH}}}
+\else
+\newcommand{\authnote}[3]{{\footnotesize\textbf{[#1: #2]}}}
+\newcommand{\TODO}[1]{\noindent{\footnotesize\textbf{TODO\@: {#1}}}}
+\newcommand{\FINISH}{\footnotesize\textbf{FINISH}}
+\fi
+\newcommand{\verified}[1]{\begin{center}\fbox{{\bf\small Verified: #1}}\end{center}}
 \fi
 
 \renewcommand\AA{\ensuremath{\mathbb A}\xspace}
@@ -115,7 +121,7 @@
 % Generic macros
 %
 
-\newcommand{\bool}{{\ensuremath{\{0,1\}}}}
+\newcommand{\bool}[1][\relax]{{\ensuremath{{\{0,1\}}^{#1}}}\xspace}
 \newcommand{\oneton}{\ensuremath{\{1,\ldots,n\}}}
 \newcommand{\oneto}[1]{\ensuremath{\{1,\ldots,#1\}}}
 \newcommand{\zeroton}{\ensuremath{\{0,\ldots,n\}}}
@@ -137,6 +143,7 @@
 
 \newcommand{\randin}{\ensuremath{\in_R}}
 \newcommand{\eqdef}{\stackrel{\textrm{def}}{=}}
+\newcommand{\inq}{\stackrel{\textrm{?}}{\in}}
 
 \newcommand{\angles}[1]{\ensuremath{\langle{#1}\rangle}}
 \newcommand{\ceil}[1]{\ensuremath{\lceil{#1}\rceil}}
@@ -163,18 +170,17 @@
 \newcommand{\ppt}{\ensuremath{\textsc{ppt}}\xspace}
 
 \newcommand{\Party}[1][\relax]{\ensuremath{P_{#1}}\xspace}
+\newcommand{\Partym}[1][\relax]{\ensuremath{P_{#1}^*}\xspace}
 \newcommand{\PA}{\Party[1]}
 \newcommand{\PB}{\Party[2]}
 \newcommand{\PC}{\Party[3]}
-\newcommand{\PAm}{\ensuremath{{P_1^*}}\xspace}
-\newcommand{\PBm}{\ensuremath{{P_2^*}}\xspace}
-\newcommand{\PCm}{\ensuremath{{P_3^*}}\xspace}
-
-\newcommand{\Zp}{\ensuremath{\ZZ_p}}
-\newcommand{\Zq}{\ensuremath{\ZZ_q}}
+\newcommand{\PAm}{\Partym[1]}
+\newcommand{\PBm}{\Partym[2]}
+\newcommand{\PCm}{\Partym[3]}
 
 \newcommand{\Sim}[1][\relax]{\ensuremath{\SSS_{#1}}\xspace}
 \newcommand{\Adv}[1][\relax]{\ensuremath{\mathcal{A}_{#1}}\xspace}
+\newcommand{\Oracle}{\ensuremath{\mathcal{O}}\xspace}
 
 \newcommand{\Hybrid}[1][\relax]{\ensuremath{\mathbf{Hybrid_{#1}}}\xspace}
 \newcommand{\Real}{\ensuremath{\mathbf{Real}}\xspace}
@@ -188,26 +194,24 @@
 \newcommand{\inddollarcpa}{\ensuremath{\textsf{IND\$-CPA}}\xspace}
 \newcommand{\indcca}{\ensuremath{\textsf{IND-CCA}}\xspace}
 
+\newcommand{\Zp}{\ensuremath{\ZZ_p}}
+\newcommand{\Zq}{\ensuremath{\ZZ_q}}
+
 %
 % Reference macros
 %
 
-\ifreflinks%
-\newcommand{\sref}[2]{\hyperref[#2]{#1~\ref*{#2}}}
+\ifcrypto@reflinks%
+  \newcommand{\sref}[2]{\hyperref[#2]{#1~\ref*{#2}}}
 \else
-\newcommand{\sref}[2]{#1~\ref{#2}}
+  \newcommand{\sref}[2]{#1~\ref{#2}}
 \fi
 
 \newcommand{\refalg}[1]{\sref{Algorithm}{#1}}
 \newcommand{\refapx}[1]{\sref{Appendix}{#1}}
 \newcommand{\refconst}[1]{\sref{Construction}{#1}}
 \newcommand{\refdef}[1]{\sref{Definition}{#1}}
-\ifreflinks%
-  \newcommand{\refeqn}[1]{\ref{#1}}
-  % \newcommand{\refeqn}[1]{\hyperref[#1]{(\ref*{#1})}}
-\else
-  \newcommand{\refeqn}[1]{\ref{#1}}
-\fi
+\newcommand{\refeqn}[1]{\ref{#1}}
 \newcommand{\reffact}[1]{\sref{Fact}{#1}}
 \newcommand{\reffig}[1]{\sref{Figure}{#1}}
 \newcommand{\reffnote}[1]{\sref{Footnote}{#1}}
@@ -228,59 +232,63 @@
 %%   Steps~\tempa%
 %% }
 
-%
-% Theorem macros
-%
-
 \newtheorem{claim}{Claim}
-\newtheorem{lemma}{Lemma}
+\@ifclassloaded{beamer}{}
+{\newtheorem{lemma}{Lemma}}
 \newtheorem*{lemma*}{Lemma}
-\newtheorem{theorem}{Theorem}
+\@ifclassloaded{beamer}{}
+{\newtheorem{theorem}{Theorem}}
 \newtheorem*{theorem*}{Theorem}
 \theoremstyle{definition}
-\newtheorem{definition}{Definition}
+\@ifclassloaded{beamer}{}
+{\newtheorem{definition}{Definition}}
 \newtheorem{protocol}{Protocol}
 
+\newcommand{\Gb}{{\ensuremath{\mathsf{Garble}}}\xspace}
+\newcommand{\En}{{\ensuremath{\mathsf{Encrypt}}}\xspace}
+\newcommand{\De}{{\ensuremath{\mathsf{Decrypt}}}\xspace}
+\newcommand{\ev}{{\ensuremath{\mathsf{eval}}}\xspace}
+\newcommand{\Ev}{{\ensuremath{\mathsf{Eval}}}\xspace}
 
-%
-% Bellare, Hoang, Rogaway notation macros
-%
+\newcommand{\PrvInd}{{\ensuremath{\mathrm{PrvInd}}}\xspace}
+\newcommand{\PrvSim}{{\ensuremath{\mathrm{PrvSim}}}\xspace}
 
-\newcommand{\Gb}{\ensuremath{\mathsf{Garble}}}
-\newcommand{\En}{\ensuremath{\mathsf{Encrypt}}}
-\newcommand{\De}{\ensuremath{\mathsf{Decrypt}}}
-\newcommand{\ev}{\ensuremath{\mathsf{eval}}}
-\newcommand{\Ev}{\ensuremath{\mathsf{Eval}}}
+\newcommand{\KeyGen}{{\ensuremath{\mathsf{KeyGen}}}\xspace}
+\newcommand{\Gen}{{\ensuremath{\mathsf{Gen}}}\xspace}
+\newcommand{\Enc}{{\ensuremath{\mathsf{Enc}}}\xspace}
+\newcommand{\Dec}{{\ensuremath{\mathsf{Dec}}}\xspace}
+\newcommand{\pk}{{\ensuremath{pk}}\xspace}
+\newcommand{\sk}{{\ensuremath{sk}}\xspace}
 
-\newcommand{\GS}{\ensuremath{\mathsf{GS}}}
+\newcommand{\Eval}{{\ensuremath{\mathsf{Eval}}}\xspace}
+\newcommand{\Samp}{{\ensuremath{\mathsf{Samp}}}\xspace}
 
-\newcommand{\proc}{\ensuremath{\mathbf{procedure}}}
-\newcommand{\PrvInd}{{\rm PrvInd}}
-\newcommand{\PrvSim}{{\rm PrvSim}}
-
-\newcommand{\KeyGen}{\ensuremath{\mathsf{KeyGen}}\xspace}
-\newcommand{\Gen}{\ensuremath{\mathsf{Gen}}\xspace}
-\newcommand{\Enc}{\ensuremath{\mathsf{Enc}}\xspace}
-\newcommand{\Dec}{\ensuremath{\mathsf{Dec}}\xspace}
+\newcommand{\PrivK}{{\ensuremath{\mathsf{PrivK}}}\xspace}
+\newcommand{\PubK}{{\ensuremath{\mathsf{PubK}}}\xspace}
 
 \newcommand{\com}{\ensuremath{\mathsf{com}}\xspace}
+\newcommand{\proc}{{\ensuremath{\mathbf{procedure}}}\xspace}
+\newcommand{\negl}{\ensuremath{\mathsf{negl}}\xspace}
 
-%
-% Canetti00 formalisms
-%
-
-\newcommand{\Coutput}{\ensuremath{\mathsf{output}}\xspace}
-\newcommand{\Cview}{\ensuremath{\mathsf{view}}\xspace}
 
 \newcommand{\len}{\ensuremath{\ell}\xspace}
-\newcommand{\secparam}{\ensuremath{k}\xspace}
-\newcommand{\ssecparam}{\ensuremath{s}\xspace}
 
+% \newcommand{\secparam}{\ensuremath{k}\xspace}
 \newcommand{\secpar}{\secparam}
+\newcommand{\ssecparam}{\ensuremath{s}\xspace}
 \newcommand{\ssecpar}{\ssecparam}
 
 \newcommand{\mask}{\ensuremath{\lambda}\xspace}
+
 \newcommand{\boolsec}{\ensuremath{\bool^\secparam}\xspace}
+\newcommand{\boolstar}{\bool[*]}
+\newcommand{\onesec}{\ensuremath{1^\secparam}\xspace}
+
+\newcommand{\onehalf}{\ensuremath{\frac{1}{2}}\xspace}
+
+\newcommand{\iO}{{\ensuremath{i\mathcal{O}}}\xspace}
+
+\newcommand{\indcpa}{\textsf{IND-CPA}\xspace}
 
 %
 % Environments
@@ -308,51 +316,6 @@
 }{%
   \end{list}
 }
-
-% \newenvironment{newenum}{%
-%   \begin{list}
-%     {{\rm\arabic{ctr}.}\hfill}
-%     {\usecounter{ctr}
-%       \labelwidth=17pt%
-%       \labelsep=6pt%
-%       \leftmargin=23pt%
-%       \topsep=.5pt%
-%       \setlength{\listparindent}{\saveparindent}%
-%       \setlength{\parsep}{\saveparskip}%
-%       \setlength{\itemsep}{5pt}}
-% }{%
-%   \end{list}
-% }
-
-% \newenvironment{neweenum}{%
-%   \begin{list}
-%     {{\rm\arabic{ctr}.\arabic{ectr}}\hfill}
-%     {\usecounter{ectr}%
-%       \labelwidth=28pt%
-%       \labelsep=4pt%
-%       \leftmargin=34pt%
-%       \topsep=0pt%
-%       \setlength{\listparindent}{\saveparindent}%
-%       \setlength{\parsep}{\saveparskip}%
-%       \setlength{\itemsep}{2pt}}
-% }{%
-%   \end{list}
-% }
-
-% \newenvironment{parenum}{%
-%   \begin{list}
-%     {{\rm(\arabic{ctr})}\hfill}
-%     {\usecounter{ctr}%
-%       \labelwidth=17pt%
-%       \labelsep=6pt%
-%       \leftmargin=23pt%
-%       \topsep=.5pt%
-%       \setlength{\listparindent}{\saveparindent}%
-%       \setlength{\parsep}{\saveparskip}%
-%       \setlength{\itemsep}{5pt}}
-% }{%
-%   \end{list}
-% }
 
 \newenvironment{venum}{%
   \begin{list}
@@ -430,33 +393,10 @@
   \end{center}
 }
 
-% \newenvironment{citemize}{
-%   \begin{itemize}
-%     \setlength{\itemsep}{1pt}
-%     \setlength{\parskip}{0pt}
-%     \setlength{\parsep}{0pt}
-% }{
-%   \end{itemize}
-% }
-
-% \newenvironment{cenumerate}{
-%   \begin{enumerate}
-%     \setlength{\itemsep}{1pt}
-%     \setlength{\parskip}{0pt}
-%     \setlength{\parsep}{0pt}
-% }{
-%   \end{enumerate}
-% }
-
-%
-% other
-%
-
 \newcommand{\cancel}[1]{}
 
 % functionalities
-\newcommand{\func}[1][\relax]{\ensuremath{\mathcal{F}_\mathbf{#1}}\xspace}
-
+\newcommand{\Func}[1][\relax]{\ensuremath{\mathcal{F}_\mathbf{#1}}\xspace}
 % protocols
 \newcommand{\Prot}[1][\relax]{\ensuremath{\Pi_\mathbf{#1}}\xspace}
 
@@ -476,18 +416,20 @@
 \newcommand{\ash}[1]{[\![#1]\!]}
 \newcommand{\s}[1]{\ensuremath{\hat{#1}}\xspace}
 \newcommand{\Aenc}{\ensuremath{\mathcal{A}^{\textbf{Enc}}}\xspace}
+
 \newcommand{\party}[1]{\ensuremath{^{(#1)}}}
 \newcommand{\step}[2]{{\bf [#1: #2]}}
 \newcommand{\noti}{{\bar{\imath}}}
+
 \newcommand{\header}[1]{\noindent{\bf #1:}}
 %% \newcommand{\token}[1]{\begin{center}\fbox{{\bf\textcolor{red}{Token:
 %%           #1}}}\end{center}}
 \newcommand{\tweak}{\ensuremath{T}}
 
-\newcommand{\bbsh}[1]{\bsh{#1}}
-\newcommand{\mtag}[1]{\ensuremath{t_{#1}}\xspace}
-\newcommand{\mkey}[1]{\ensuremath{k_{#1}}\xspace}
-\newcommand{\mver}{\ensuremath{\mathsf{Verify}}\xspace}
+% \newcommand{\bbsh}[1]{\bsh{#1}}
+% \newcommand{\mtag}[1]{\ensuremath{t_{#1}}\xspace}
+% \newcommand{\mkey}[1]{\ensuremath{k_{#1}}\xspace}
+% \newcommand{\mver}{\ensuremath{\mathsf{Verify}}\xspace}
 
 \newcommand{\Fail}[1]{\ensuremath{\mathsf{Fail}_{#1}}}
 
