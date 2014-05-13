@@ -167,6 +167,7 @@
 \newcommand{\poly}{\ensuremath{\text{poly}}}
 
 \newcommand{\bigo}[1]{\ensuremath{\OOO\Paren{#1}}}
+\newcommand{\bigotilde}[1]{\ensuremath{\widetilde{\OOO}\Paren{#1}}}
 \newcommand{\ppt}{\ensuremath{\textsc{ppt}}\xspace}
 
 \newcommand{\Party}[1][\relax]{\ensuremath{P_{#1}}\xspace}
@@ -190,12 +191,11 @@
 \newcommand{\cind}{\stackrel{\textrm{c}}{\ind}}
 \newcommand{\dind}{\stackrel{\textrm{d}}{\ind}}
 
-\newcommand{\indcpa}{\ensuremath{\textsf{IND-CPA}}\xspace}
-\newcommand{\inddollarcpa}{\ensuremath{\textsf{IND\$-CPA}}\xspace}
-\newcommand{\indcca}{\ensuremath{\textsf{IND-CCA}}\xspace}
+\newcommand{\Zp}{{\ensuremath{\ZZ_p}}\xspace}
+\newcommand{\Zq}{{\ensuremath{\ZZ_q}}\xspace}
 
-\newcommand{\Zp}{\ensuremath{\ZZ_p}}
-\newcommand{\Zq}{\ensuremath{\ZZ_q}}
+% http://www.matthewflickinger.com/blog/archives/2005/02/20/latex_mod_spacing.asp
+\newcommand{\imod}[1]{\allowbreak\mkern10mu({\operator@font mod}\,\,#1)}
 
 %
 % Reference macros
@@ -211,10 +211,9 @@
 \newcommand{\refapx}[1]{\sref{Appendix}{#1}}
 \newcommand{\refconst}[1]{\sref{Construction}{#1}}
 \newcommand{\refdef}[1]{\sref{Definition}{#1}}
-\newcommand{\refeqn}[1]{\ref{#1}}
+\newcommand{\refeqn}[1]{\sref{Equation}{#1}}
 \newcommand{\reffact}[1]{\sref{Fact}{#1}}
 \newcommand{\reffig}[1]{\sref{Figure}{#1}}
-\newcommand{\reffnote}[1]{\sref{Footnote}{#1}}
 \newcommand{\reflemma}[1]{\sref{Lemma}{#1}}
 \newcommand{\refcor}[1]{\sref{Corollary}{#1}}
 \newcommand{\refprop}[1]{\sref{Property}{#1}}
@@ -232,17 +231,17 @@
 %%   Steps~\tempa%
 %% }
 
-\newtheorem{claim}{Claim}
-\@ifclassloaded{beamer}{}
-{\newtheorem{lemma}{Lemma}}
-\newtheorem*{lemma*}{Lemma}
-\@ifclassloaded{beamer}{}
-{\newtheorem{theorem}{Theorem}}
-\newtheorem*{theorem*}{Theorem}
-\theoremstyle{definition}
-\@ifclassloaded{beamer}{}
-{\newtheorem{definition}{Definition}}
-\newtheorem{protocol}{Protocol}
+% \newtheorem{claim}{Claim}
+% \@ifclassloaded{beamer}{}
+% {\newtheorem{lemma}{Lemma}}
+% \newtheorem*{lemma*}{Lemma}
+% \@ifclassloaded{beamer}{}
+% {\newtheorem{theorem}{Theorem}}
+% \newtheorem*{theorem*}{Theorem}
+% \theoremstyle{definition}
+% \@ifclassloaded{beamer}{}
+% {\newtheorem{definition}{Definition}}
+% \newtheorem{protocol}{Protocol}
 
 \newcommand{\Gb}{{\ensuremath{\mathsf{Garble}}}\xspace}
 \newcommand{\En}{{\ensuremath{\mathsf{Encrypt}}}\xspace}
@@ -289,6 +288,8 @@
 \newcommand{\iO}{{\ensuremath{i\mathcal{O}}}\xspace}
 
 \newcommand{\indcpa}{\textsf{IND-CPA}\xspace}
+
+\newcommand{\NCone}{{\ensuremath{\mathsf{NC^1}}}\xspace}
 
 %
 % Environments
@@ -438,11 +439,5 @@
 %
 
 \newcommand{\FullVersion}[1]{Full version available at \url{#1}}
-
-%
-% other
-%
-
-\newcommand{\EasyCrypt}{\ensuremath{\textsf{EasyCrypt}}\xspace}
 
 \endinput
