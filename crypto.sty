@@ -22,6 +22,7 @@
 }
 
 \DeclareBoolOption[false]{color}
+\DeclareBoolOption[false]{draft}
 \DeclareBoolOption[false]{reflinks}
 \DeclareBoolOption[false]{submission}
 \DeclareStringOption[k]{secparam}
@@ -36,31 +37,41 @@
 \RequirePackage{xspace}
 
 \ifcrypto@reflinks%
-  \ifcrypto@color%
-    \RequirePackage[colorlinks=true,citecolor=cyan,linkcolor=blue]{hyperref}
-  \else%
-    \RequirePackage{hyperref}
-  \fi%
+\ifcrypto@color%
+\RequirePackage[colorlinks=true,citecolor=cyan,linkcolor=blue]{hyperref}
+\else%
+\RequirePackage{hyperref}
+\fi%
+\fi%
+
+\ifcrypto@draft%
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead{}
+\chead{--- DRAFT ---}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\let\ps@plain\ps@fancy
 \fi%
 
 \ifcrypto@submission%
-  \newcommand{\authnote}[2]{}
-  \newcommand{\TODO}[1]{}
-  \newcommand{\FINISH}{}
-  \newcommand{\verified}{}
+\newcommand{\authnote}[2]{}
+\newcommand{\TODO}[1]{}
+\newcommand{\FINISH}{}
+\newcommand{\verified}{}
 \else%
-  \ifcrypto@color%
-    \RequirePackage{color}
-    \newcommand{\authnote}[3]{\textcolor{#3}{\footnotesize\textbf{[#1: #2]}}}
-    \newcommand{\TODO}[1]{\noindent\textcolor{red}{\footnotesize\textbf{TODO\@:
-          {#1}}}}
-    \newcommand{\FINISH}{\textcolor{red}{\footnotesize\textbf{FINISH}}}
-  \else
-    \newcommand{\authnote}[3]{{\footnotesize\textbf{[#1: #2]}}}
-    \newcommand{\TODO}[1]{\noindent{\footnotesize\textbf{TODO\@: {#1}}}}
-    \newcommand{\FINISH}{\footnotesize\textbf{FINISH}}
-  \fi
-  \newcommand{\verified}[1]{\begin{center}\fbox{{\bf\small Verified: #1}}\end{center}}
+\ifcrypto@color%
+\RequirePackage{color}
+\newcommand{\authnote}[3]{\textcolor{#3}{\footnotesize\textbf{[#1: #2]}}}
+\newcommand{\TODO}[1]{\noindent\textcolor{red}{\footnotesize\textbf{TODO\@:
+      {#1}}}}
+\newcommand{\FINISH}{\textcolor{red}{\footnotesize\textbf{FINISH}}}
+\else
+\newcommand{\authnote}[3]{{\footnotesize\textbf{[#1: #2]}}}
+\newcommand{\TODO}[1]{\noindent{\footnotesize\textbf{TODO\@: {#1}}}}
+\newcommand{\FINISH}{\footnotesize\textbf{FINISH}}
+\fi
+\newcommand{\verified}[1]{\begin{center}\fbox{{\bf\small Verified: #1}}\end{center}}
 \fi
 
 % \renewcommand\AA{\ensuremath{\mathbb A}\xspace}
@@ -158,6 +169,7 @@
 \newcommand{\poly}{\ensuremath{\text{poly}}}
 
 \newcommand{\bigo}[1]{\ensuremath{\OOO\Paren{#1}}}
+\newcommand{\bigotilde}[1]{\ensuremath{\widetilde{\OOO}\Paren{#1}}}
 \newcommand{\ppt}{\ensuremath{\textsc{ppt}}\xspace}
 
 \newcommand{\NCone}{{\ensuremath{\mathbf{NC}$^1$}}\xspace}
@@ -185,8 +197,11 @@
 \newcommand{\cind}{\stackrel{\textrm{c}}{\ind}}
 \newcommand{\dind}{\stackrel{\textrm{d}}{\ind}}
 
-\newcommand{\Zp}{\ensuremath{\ZZ_p}}
-\newcommand{\Zq}{\ensuremath{\ZZ_q}}
+\newcommand{\Zp}{{\ensuremath{\ZZ_p}}\xspace}
+\newcommand{\Zq}{{\ensuremath{\ZZ_q}}\xspace}
+
+% http://www.matthewflickinger.com/blog/archives/2005/02/20/latex_mod_spacing.asp
+\newcommand{\imod}[1]{\allowbreak\mkern10mu({\operator@font mod}\,\,#1)}
 
 %
 % Reference macros
@@ -202,7 +217,7 @@
 \newcommand{\refapx}[1]{\sref{Appendix}{#1}}
 \newcommand{\refconst}[1]{\sref{Construction}{#1}}
 \newcommand{\refdef}[1]{\sref{Definition}{#1}}
-\newcommand{\refeqn}[1]{\ref{#1}}
+\newcommand{\refeqn}[1]{\sref{Equation}{#1}}
 \newcommand{\reffact}[1]{\sref{Fact}{#1}}
 \newcommand{\reffig}[1]{\sref{Figure}{#1}}
 \newcommand{\reflemma}[1]{\sref{Lemma}{#1}}
@@ -213,6 +228,14 @@
 \newcommand{\refstep}[1]{\sref{Step}{#1}}
 \newcommand{\reftab}[1]{\sref{Table}{#1}}
 \newcommand{\refthm}[1]{\sref{Theorem}{#1}}
+
+%% \newcommand{\refsteps}[2][\relax]{%
+%%   \def\tempa{}%
+%%   \@for\reserved:=#2\do{%
+%%     \edef\tempa{\tempa\ifx\tempa\empty\else~#1 \fi\ref{\reserved}}%
+%%   }%
+%%   Steps~\tempa%
+%% }
 
 \newtheorem{claim}{Claim}
 \@ifclassloaded{beamer}{}
@@ -289,6 +312,8 @@
 
 \newcommand{\accept}{{\ensuremath{\mathsf{accept}}}\xspace}
 \newcommand{\reject}{{\ensuremath{\mathsf{reject}}}\xspace}
+
+\newcommand{\NCone}{{\ensuremath{\mathsf{NC^1}}}\xspace}
 
 %
 % Environments
@@ -395,9 +420,7 @@
 
 \newcommand{\cancel}[1]{}
 
-% functionalities
 \newcommand{\Func}[1][\relax]{\ensuremath{\mathcal{F}_\mathbf{#1}}\xspace}
-% protocols
 \newcommand{\Prot}[1][\relax]{\ensuremath{\Pi_\mathbf{#1}}\xspace}
 
 \newcommand{\randfrom}{\ensuremath{\stackrel{\$}{\from}}}
@@ -422,14 +445,7 @@
 \newcommand{\noti}{{\bar{\imath}}}
 
 \newcommand{\header}[1]{\noindent{\bf #1:}}
-%% \newcommand{\token}[1]{\begin{center}\fbox{{\bf\textcolor{red}{Token:
-%%           #1}}}\end{center}}
 \newcommand{\tweak}{\ensuremath{T}}
-
-% \newcommand{\bbsh}[1]{\bsh{#1}}
-% \newcommand{\mtag}[1]{\ensuremath{t_{#1}}\xspace}
-% \newcommand{\mkey}[1]{\ensuremath{k_{#1}}\xspace}
-% \newcommand{\mver}{\ensuremath{\mathsf{Verify}}\xspace}
 
 \newcommand{\Fail}[1]{\ensuremath{\mathsf{Fail}_{#1}}}
 

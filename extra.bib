@@ -1,4 +1,36 @@
-@Article{SIAMJ:Micali00,
+@Article{JCSS:Barrington89,
+  author = "David A. Barrington",
+  title = "Bounded-width Polynomial-size Branching Programs Recognize Exactly
+                  Those Languages in \textbf{NC}$^1$",
+  pages = "150--164",
+  journal = "Journal of Computer and System Sciences",
+  volume = 38,
+  number = 1,
+  year = 1989,
+}
+
+@Article{LenLenLov82,
+  author = "Arjen K. Lenstra and Hendrik W. Lenstra and L\'{a}sl\'{o}
+                  Lov\'{a}sz",
+  title = "Factoring polynomials with rational coefficients",
+  pages = "515--534",
+  journal = "Mathematische Annalen",
+  volume = 261,
+  number = 4,
+  year = 1982,
+}
+
+@Article{ManWal80,
+  author = "Zohar Manna and Richard Waldinger",
+  title = "A deductive approach to program synthesis",
+  journal = "ACM Transactions on Programming Languages and Systems",
+  volume = 2,
+  number = 1,
+  pages = "90--121",
+  year = 1980,
+}
+
+@Article{Micali00,
 author = {Silvio Micali},
 title = {Computationally sound proofs},
 journal = {SIAM Journal on Computing},
@@ -8,6 +40,17 @@ pages = {1253--1298},
 year = 2000,
 publisher = {SIAM},
 }
+
+@Article{SteJoy05,
+  author = "William Stein and David Joyner",
+  title = "{SAGE}: System for Algebra and Geometry Experimentation",
+  pages = "61--64",
+  journal = "ACM SIGSAM Bulletin",
+  volume = 39,
+  number = 2,
+  year = 2005,
+}
+
 @InProceedings{ASIAN:GLLS09,
   author    = {Martin Gagn{\'e} and
                Pascal Lafourcade and
@@ -15,12 +58,41 @@ publisher = {SIAM},
                Reihaneh Safavi-Naini},
   title     = {Automated security proof for symmetric encryption modes},
   pages     = {39--53},
-  booktitle = {ASIAN 2009: 13th Asian Computing Science Conference},
+  booktitle = {13th Asian Computing Science Conference},
   editor    = "Anupam Datta",
-  address   = "Seoul, Korea",
-  month     = dec # "~14--16,",
   publisher = springer,
   year      = 2009,
+}
+
+@InProceedings{EC:BGKPS14,
+  author = "Boaz Barak and Sanjam Garg and Yael Tauman Kalai and Omer Paneth and
+                  Amit Sahai",
+  title = "Protecting Obfuscation Against Algebraic Attacks",
+  pages = "",
+  editor = eurocrypt14ed,
+  booktitle = eurocrypt14name,
+  volume = eurocrypt14vol,
+  address = eurocrypt14addr,
+  month = eurocrypt14month,
+  publisher = eurocryptpub,
+  series = mylncs,
+  year = 2014,
+  doi = "",
+}
+
+@InProceedings{EC:LanSteSte14,
+  author = "Adeline Langlois and Damien Stehle and Ron Steinfeld",
+  title = "{GGHL}ite: More Efficient Multilinear Maps from Ideal Lattices",
+  pages = "",
+  editor = eurocrypt14ed,
+  booktitle = eurocrypt14name,
+  volume = eurocrypt14vol,
+  address = eurocrypt14addr,
+  month = eurocrypt14month,
+  publisher = eurocryptpub,
+  series = mylncs,
+  year = 2014,
+  doi = "",
 }
 
 @InProceedings{FPS:GLLS12,
@@ -31,7 +103,7 @@ publisher = {SIAM},
   title     = {Automated verification of block cipher modes of operation, an
                   improved method},
   pages     = {23--31},
-  booktitle = {FPS 2012: 5th International Symposium on Foundations and Practice
+  booktitle = {5th International Symposium on Foundations and Practice
                   of Security},
   editor    = {Joaqu{\'i}n Garc{\'i}a-Alfaro and
                Fr{\'e}d{\'e}ric Cuppens and
@@ -39,14 +111,54 @@ publisher = {SIAM},
                Ali Miri and
                Nadia Tawbi},
   volume    = "7743",
-  address   = "Montreal, QC, Canada",
-  month     = oct # "~25--26,",
   publisher = springer,
   series    = mylncs,
   year      = 2012,
 }
 
-@InProceedings{USENIX:MNPS04,
+@InProceedings{STACS:SauWegWer99,
+  author = "Martin Sauerhoff and Ingo Wegener and Ralph Werchner",
+  title = "Relating branching program size and formula size over the full binary
+                  basis",
+  pages = "57--67",
+  booktitle = "STACS 99: 16th Annual Symposium on Theoretical Aspects of
+                  Computer Science",
+  editor = "Christoph Meinel and Sophie Tison",
+  volume = "1563",
+  address = "Trier, Germany",
+  month = mar # "~4--6,",
+  publisher = springer,
+  series = mylncs,
+  year = 1999
+}
+
+@InProceedings{STOC:SahWat14,
+  author = "Amit Sahai and Brent Waters",
+  title = "How to Use Indistinguishability Obfuscation: Deniable Encryption, and More",
+  pages = "",
+  editor = stoc14ed,
+  booktitle = stoc14name,
+  address = stoc14addr,
+  month = stoc14month,
+  publisher = stocpub,
+  year = 2014,
+}
+
+@InProceedings{USS:BhaDuVSek03,
+  author = {Sandeep Bhatkar and
+            Daniel C. DuVarney and
+            R. Sekar},
+  title = {Address Obfuscation: an Efficient Approach to Combat a Broad Range of
+  Memory Error Exploits},
+  editor = "Vern Paxson",
+  booktitle = {12th USENIX Security Symposium},
+  address = "Washington, D.C., USA",
+  month = aug # "~4--8,",
+  publisher = {USENIX Association},
+  year = 2003,
+}
+
+@InProceedings{USS:MNPS04,
   author    = {Dahlia Malkhi and
                Noam Nisan and
                Benny Pinkas and
@@ -55,12 +167,12 @@ publisher = {SIAM},
   editor    = "Matt Blaze",
   booktitle = {13th USENIX Security Symposium},
   address   = "San Diego, California, USA",
-  month      = aug # "~9==13,",
+  month      = aug # "~9--13,",
   publisher = {USENIX Association},
   year      = 2004
 }
 
-@InProceedings{USENIX:BSMD10,
+@InProceedings{USS:BSMD10,
   author    = {Martin Burkhart and
                Mario Strasser and
                Dilip Many and
@@ -74,7 +186,7 @@ publisher = {SIAM},
   year      = 2010
 }
 
-@InProceedings{USENIX:HEKM11,
+@InProceedings{USS:HEKM11,
   author    = {Yan Huang and
                David Evans and
                Jonathan Katz and
@@ -88,7 +200,7 @@ publisher = {SIAM},
   year      = 2011
 }
 
-@InProceedings{USENIX:KreSheShe12,
+@InProceedings{USS:KreSheShe12,
   author = {Benjamin Kreuter and {abhi} {shelat} and Chih-Hao Shen},
   title = {Towards Billion-gate Secure Computation with Malicious Adversaries},
   editor = "Tadayoshi Kohno",
@@ -115,16 +227,69 @@ publisher = {SIAM},
   publisher = {CRC Press}
 }
 
-@Article{ePrint:Rabin05,
-  author={Michael O. Rabin},
-  title={How To Exchange Secrets with Oblivious Transfer},
-  journal={Technical Report TR-81, Aiken Computation Lab, Harvard University},
-  year={1981},
+@Misc{EPRINT:AGIS14,
+  author = "Prabhanjan Ananth and Divya Gupta and Yuval Ishai and Amit Sahai",
+  title = "Optimizing Obfuscation: Avoiding {B}arrington's Theorem",
+  year = 2014,
+  howpublished = "Cryptology ePrint Archive, Report 2014/222",
+  note = "\url{https://eprint.iacr.org/2014/222}",
+}
+
+@Misc{EPRINT:GenLewWat14,
+  author = "Craig Gentry and Allison Bishop Lewko and Brent Waters",
+  title = "Witness Encryption from Instance Independent Assumptions",
+  year = 2014,
+  howpublished = "Cryptology ePrint Archive, Report 2014/273",
+  note = "\url{https://eprint.iacr.org/2014/273}",
+}
+
+@Misc{EPRINT:GLSW14,
+  author = "Craig Gentry and Allison Lewko and Amit Sahai and Brent Waters",
+  title = "Indistinguishability Obfuscation from the Multilinear Subgroup
+                  Elimination Assumption",
+  year = 2014,
+  howpublished = "Cryptology ePrint Archive, Report 2014/309",
+  note = "\url{https://eprint.iacr.org/2014/309}",
+}
+
+
+@Misc{EPRINT:KomNaoYog14,
+  author = "Ilan Komargodski and Moni Naor and Eylon Yogev",
+  title = "Secret-Sharing  for {NP} from Indistinguishability Obfuscation",
+  year = 2014,
+  howpublished = "Cryptology ePrint Archive, Report 2014/213",
+  note = "\url{https://eprint.iacr.org/2014/213}",
+}
+
+@Article{EPRINT:Rabin05,
+  author = "Michael O. Rabin",
+  title = "How To Exchange Secrets with Oblivious Transfer",
+  journal = "Technical Report TR-81, Aiken Computation Lab, Harvard University",
+  year = 1981,
   note = "Available at \url{https://eprint.iacr.org/2005/187}",
 }
 
-@Misc{Z3,
-  title = "{Z3} Theorem Prover",
-  howpublished = "Available at \url{https://z3.codeplex.com}",
-  note = "v4.3.1",
+@PhdThesis{THESIS:Srivastava,
+  author = "Saurabh Srivastava",
+  title = "Satisfiability-Based Program Reasoning and Program Synthesis",
+  school = "University of Maryland",
+  year = 2010,
+}
+
+@Unpublished{LECTURE:Holenstein10,
+  author = "Thomas Holenstein",
+  title = "Chapter 12: Branching Programs and {B}arrington's Theorem",
+  month = dec # "~23,",
+  year = 2010,
+  note = "Available at
+                  \url{http://www.complexity.ethz.ch/education/Lectures/ComplexityHS10/ScriptChapterTwelve}"
+}
+
+@Unpublished{Boneh13,
+  author = "Dan Boneh",
+  title = "A Note on {B}arrington's Theorem",
+  month = dec # "~7,",
+  year = 2013,
+  note = "Available at
+                  \url{http://crypto.stanford.edu/~dabo/pubs/papers/barrington.html}"
 }
