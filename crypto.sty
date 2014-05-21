@@ -313,8 +313,6 @@
 \newcommand{\accept}{{\ensuremath{\mathsf{accept}}}\xspace}
 \newcommand{\reject}{{\ensuremath{\mathsf{reject}}}\xspace}
 
-\newcommand{\NCone}{{\ensuremath{\mathsf{NC^1}}}\xspace}
-
 %
 % Environments
 %
@@ -365,6 +363,16 @@
 }{
   \end{enumerate}
 }
+
+\newenvironment{citemize}{
+  \begin{itemize}
+    \setlength{\itemsep}{1pt}
+    \setlength{\parskip}{0pt}
+    \setlength{\parsep}{0pt}
+}{
+  \end{itemize}
+}
+
 
 \newenvironment{nfbox}[1]{
   \begin{center}
