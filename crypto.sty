@@ -31,6 +31,7 @@
 \ProcessKeyvalOptions{crypto}
 
 \RequirePackage{amsfonts,amsmath,amssymb,amsthm}
+\RequirePackage{framed}
 \RequirePackage{url}
 \RequirePackage{xspace}
 
@@ -62,7 +63,7 @@
   \newcommand{\verified}[1]{\begin{center}\fbox{{\bf\small Verified: #1}}\end{center}}
 \fi
 
-\renewcommand\AA{\ensuremath{\mathbb A}\xspace}
+% \renewcommand\AA{\ensuremath{\mathbb A}\xspace}
 \newcommand\BB{\ensuremath{\mathbb B}\xspace}
 \newcommand\CC{\ensuremath{\mathbb C}\xspace}
 \newcommand\DD{\ensuremath{\mathbb D}\xspace}
@@ -111,6 +112,7 @@
 %
 
 \newcommand{\bool}[1][\relax]{{\ensuremath{{\{0,1\}}^{#1}}}\xspace}
+\newcommand{\one}[1][\relax]{{\ensuremath{1^{#1}}}\xspace}
 \newcommand{\oneton}{\ensuremath{\{1,\ldots,n\}}}
 \newcommand{\oneto}[1]{\ensuremath{\{1,\ldots,#1\}}}
 \newcommand{\zeroton}{\ensuremath{\{0,\ldots,n\}}}
@@ -157,6 +159,10 @@
 
 \newcommand{\bigo}[1]{\ensuremath{\OOO\Paren{#1}}}
 \newcommand{\ppt}{\ensuremath{\textsc{ppt}}\xspace}
+
+\newcommand{\NCone}{{\ensuremath{\mathbf{NC}$^1$}}\xspace}
+\newcommand{\Ptime}{{\ensuremath{\mathbf{P}}}\xspace}
+\newcommand{\NP}{{\ensuremath{\mathbf{NP}}}\xspace}
 
 \newcommand{\Party}[1][\relax]{\ensuremath{P_{#1}}\xspace}
 \newcommand{\Partym}[1][\relax]{\ensuremath{P_{#1}^*}\xspace}
@@ -208,14 +214,6 @@
 \newcommand{\reftab}[1]{\sref{Table}{#1}}
 \newcommand{\refthm}[1]{\sref{Theorem}{#1}}
 
-%% \newcommand{\refsteps}[2][\relax]{%
-%%   \def\tempa{}%
-%%   \@for\reserved:=#2\do{%
-%%     \edef\tempa{\tempa\ifx\tempa\empty\else~#1 \fi\ref{\reserved}}%
-%%   }%
-%%   Steps~\tempa%
-%% }
-
 \newtheorem{claim}{Claim}
 \@ifclassloaded{beamer}{}
 {\newtheorem{lemma}{Lemma}}
@@ -241,14 +239,28 @@
 \newcommand{\Gen}{{\ensuremath{\mathsf{Gen}}}\xspace}
 \newcommand{\Enc}{{\ensuremath{\mathsf{Enc}}}\xspace}
 \newcommand{\Dec}{{\ensuremath{\mathsf{Dec}}}\xspace}
-\newcommand{\pk}{{\ensuremath{pk}}\xspace}
-\newcommand{\sk}{{\ensuremath{sk}}\xspace}
+\newcommand{\gen}{{\ensuremath{\mathsf{gen}}}\xspace}
+\newcommand{\enc}{{\ensuremath{\mathsf{enc}}}\xspace}
+\newcommand{\dec}{{\ensuremath{\mathsf{dec}}}\xspace}
+
+\newcommand{\Prv}{{\ensuremath{\mathsf{Prv}}}\xspace}
+\newcommand{\Ver}{{\ensuremath{\mathsf{Ver}}}\xspace}
+
+\newcommand{\PK}{{\ensuremath{\textsc{pk}}}\xspace}
+\newcommand{\SK}{{\ensuremath{\textsc{sk}}}\xspace}
+
+\newcommand{\pk}{{\ensuremath{\mathsf{pk}}}\xspace}
+\newcommand{\sk}{{\ensuremath{\mathsf{sk}}}\xspace}
 
 \newcommand{\Eval}{{\ensuremath{\mathsf{Eval}}}\xspace}
 \newcommand{\Samp}{{\ensuremath{\mathsf{Samp}}}\xspace}
 
+\newcommand{\CRSGen}{{\ensuremath{\mathsf{CRSGen}}}\xspace}
+
 \newcommand{\PrivK}{{\ensuremath{\mathsf{PrivK}}}\xspace}
 \newcommand{\PubK}{{\ensuremath{\mathsf{PubK}}}\xspace}
+
+\newcommand{\crs}{{\ensuremath{\mathsf{crs}}}\xspace}
 
 \newcommand{\com}{\ensuremath{\mathsf{com}}\xspace}
 \newcommand{\proc}{{\ensuremath{\mathbf{procedure}}}\xspace}
@@ -257,7 +269,6 @@
 
 \newcommand{\len}{\ensuremath{\ell}\xspace}
 
-% \newcommand{\secparam}{\ensuremath{k}\xspace}
 \newcommand{\secpar}{\secparam}
 \newcommand{\ssecparam}{\ensuremath{s}\xspace}
 \newcommand{\ssecpar}{\ssecparam}
@@ -270,9 +281,14 @@
 
 \newcommand{\onehalf}{\ensuremath{\frac{1}{2}}\xspace}
 
-\newcommand{\iO}{{\ensuremath{i\mathcal{O}}}\xspace}
+\newcommand{\Obf}{{\ensuremath{\text{\textsf{Obf}}}}\xspace}
+\newcommand{\iO}{{\ensuremath{\mathsf{iO}}}\xspace}
+\newcommand{\diO}{{\ensuremath{\mathsf{diO}}}\xspace}
 
 \newcommand{\indcpa}{\textsf{IND-CPA}\xspace}
+
+\newcommand{\accept}{{\ensuremath{\mathsf{accept}}}\xspace}
+\newcommand{\reject}{{\ensuremath{\mathsf{reject}}}\xspace}
 
 %
 % Environments
@@ -329,7 +345,7 @@
   \begin{center}
     \footnotesize
     \begin{framed}
-      \begin{minipage}{.95\linewidth}
+      \begin{minipage}{\linewidth}
           #1
 }{%
       \end{minipage}
