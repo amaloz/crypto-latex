@@ -15,7 +15,6 @@
 \typeout{Package `\filename', \fileversion, <\filedate>}
 
 \RequirePackage{kvoptions}
-
 \SetupKeyvalOptions{
   family=crypto,
   prefix=crypto@
@@ -26,12 +25,11 @@
 \DeclareBoolOption[false]{reflinks}
 \DeclareBoolOption[false]{submission}
 \DeclareStringOption[k]{secparam}
-\define@key{crypto}{secparam}
-{\newcommand{\secparam}{{\ensuremath{#1}}\xspace}}
-
 \ProcessKeyvalOptions{crypto}
+\newcommand{\secparam}{{\ensuremath{\crypto@secparam}}\xspace}
 
-\RequirePackage{amsfonts,amsmath,amssymb,amsthm}
+\RequirePackage{amsfonts,amsmath,amssymb}
+% \RequirePackage{amsthm}
 \RequirePackage{framed}
 \RequirePackage{url}
 \RequirePackage{xspace}
@@ -229,25 +227,17 @@
 \newcommand{\reftab}[1]{\sref{Table}{#1}}
 \newcommand{\refthm}[1]{\sref{Theorem}{#1}}
 
-%% \newcommand{\refsteps}[2][\relax]{%
-%%   \def\tempa{}%
-%%   \@for\reserved:=#2\do{%
-%%     \edef\tempa{\tempa\ifx\tempa\empty\else~#1 \fi\ref{\reserved}}%
-%%   }%
-%%   Steps~\tempa%
-%% }
-
-\newtheorem{claim}{Claim}
-\@ifclassloaded{beamer}{}
-{\newtheorem{lemma}{Lemma}}
-\newtheorem*{lemma*}{Lemma}
-\@ifclassloaded{beamer}{}
-{\newtheorem{theorem}{Theorem}}
-\newtheorem*{theorem*}{Theorem}
-\theoremstyle{definition}
-\@ifclassloaded{beamer}{}
-{\newtheorem{definition}{Definition}}
-\newtheorem{protocol}{Protocol}
+% \newtheorem{claim}{Claim}
+% \@ifclassloaded{beamer}{}
+% {\newtheorem{lemma}{Lemma}}
+% \newtheorem*{lemma*}{Lemma}
+% \@ifclassloaded{beamer}{}
+% {\newtheorem{theorem}{Theorem}}
+% \newtheorem*{theorem*}{Theorem}
+% \theoremstyle{definition}
+% \@ifclassloaded{beamer}{}
+% {\newtheorem{definition}{Definition}}
+% \newtheorem{protocol}{Protocol}
 
 \newcommand{\Gb}{{\ensuremath{\mathsf{Garble}}}\xspace}
 \newcommand{\En}{{\ensuremath{\mathsf{Encrypt}}}\xspace}
