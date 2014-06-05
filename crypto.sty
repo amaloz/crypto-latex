@@ -15,9 +15,9 @@
 \typeout{Package `\filename', \fileversion, <\filedate>}
 
 \RequirePackage{kvoptions}
-\SetupKeyvalOptions{
-  family=crypto,
-  prefix=crypto@
+\SetupKeyvalOptions{%
+  family=crypto,%
+  prefix=crypto@%
 }
 
 \DeclareBoolOption[false]{color}
@@ -28,51 +28,52 @@
 \ProcessKeyvalOptions{crypto}
 \newcommand{\secparam}{{\ensuremath{\crypto@secparam}}\xspace}
 
+\ifcrypto@color%
+  \RequirePackage{color}
+\fi
+
+\ifcrypto@reflinks%
+  \ifcrypto@color%
+    \RequirePackage[colorlinks=true,citecolor=cyan,linkcolor=blue]{hyperref}
+  \else%
+    \RequirePackage{hyperref}
+  \fi
+\fi
+
 \RequirePackage{amsfonts,amsmath,amssymb}
 % \RequirePackage{amsthm}
 \RequirePackage{framed}
 \RequirePackage{url}
 \RequirePackage{xspace}
 
-\ifcrypto@reflinks%
-\ifcrypto@color%
-\RequirePackage[colorlinks=true,citecolor=cyan,linkcolor=blue]{hyperref}
-\else%
-\RequirePackage{hyperref}
-\fi%
-\fi%
-
 \ifcrypto@draft%
-\usepackage{fancyhdr}
-\pagestyle{fancy}
-\fancyhead{}
-\chead{--- DRAFT ---}
-\renewcommand{\headrulewidth}{0pt}
-\renewcommand{\footrulewidth}{0pt}
-\let\ps@plain\ps@fancy
+  \usepackage{fancyhdr}
+  \pagestyle{fancy}
+  \fancyhead{}
+  \chead{--- DRAFT ---}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}
+  \let\ps@plain\ps@fancy%
 \fi%
 
 \ifcrypto@submission%
-\newcommand{\authnote}[2]{}
-\newcommand{\TODO}[1]{}
-\newcommand{\FINISH}{}
-\newcommand{\verified}{}
+  \newcommand{\authnote}[2]{}
+  \newcommand{\TODO}[1]{}
+  \newcommand{\FINISH}{}
+  \newcommand{\verified}{}
 \else%
-\ifcrypto@color%
-\RequirePackage{color}
-\newcommand{\authnote}[3]{\textcolor{#3}{\footnotesize\textbf{[#1: #2]}}}
-\newcommand{\TODO}[1]{\noindent\textcolor{red}{\footnotesize\textbf{TODO\@:
-      {#1}}}}
-\newcommand{\FINISH}{\textcolor{red}{\footnotesize\textbf{FINISH}}}
-\else
-\newcommand{\authnote}[3]{{\footnotesize\textbf{[#1: #2]}}}
-\newcommand{\TODO}[1]{\noindent{\footnotesize\textbf{TODO\@: {#1}}}}
-\newcommand{\FINISH}{\footnotesize\textbf{FINISH}}
-\fi
-\newcommand{\verified}[1]{\begin{center}\fbox{{\bf\small Verified: #1}}\end{center}}
+  \ifcrypto@color%
+    \newcommand{\authnote}[3]{\textcolor{#3}{\footnotesize\textbf{[#1: #2]}}}
+    \newcommand{\TODO}[1]{\noindent\textcolor{red}{\footnotesize\textbf{TODO\@: {#1}}}}
+    \newcommand{\FINISH}{\textcolor{red}{\footnotesize\textbf{FINISH}}}
+  \else
+    \newcommand{\authnote}[3]{{\footnotesize\textbf{[#1: #2]}}}
+    \newcommand{\TODO}[1]{\noindent{\footnotesize\textbf{TODO\@: {#1}}}}
+    \newcommand{\FINISH}{\footnotesize\textbf{FINISH}}
+  \fi
+  \newcommand{\verified}[1]{\begin{center}\fbox{{\bf\small Verified: #1}}\end{center}}
 \fi
 
-% \renewcommand\AA{\ensuremath{\mathbb A}\xspace}
 \newcommand\BB{\ensuremath{\mathbb B}\xspace}
 \newcommand\CC{\ensuremath{\mathbb C}\xspace}
 \newcommand\DD{\ensuremath{\mathbb D}\xspace}
@@ -226,18 +227,6 @@
 \newcommand{\refstep}[1]{\sref{Step}{#1}}
 \newcommand{\reftab}[1]{\sref{Table}{#1}}
 \newcommand{\refthm}[1]{\sref{Theorem}{#1}}
-
-% \newtheorem{claim}{Claim}
-% \@ifclassloaded{beamer}{}
-% {\newtheorem{lemma}{Lemma}}
-% \newtheorem*{lemma*}{Lemma}
-% \@ifclassloaded{beamer}{}
-% {\newtheorem{theorem}{Theorem}}
-% \newtheorem*{theorem*}{Theorem}
-% \theoremstyle{definition}
-% \@ifclassloaded{beamer}{}
-% {\newtheorem{definition}{Definition}}
-% \newtheorem{protocol}{Protocol}
 
 \newcommand{\Gb}{{\ensuremath{\mathsf{Garble}}}\xspace}
 \newcommand{\En}{{\ensuremath{\mathsf{Encrypt}}}\xspace}
@@ -421,7 +410,8 @@
 \newcommand{\Func}[1][\relax]{\ensuremath{\mathcal{F}_\mathbf{#1}}\xspace}
 \newcommand{\Prot}[1][\relax]{\ensuremath{\Pi_\mathbf{#1}}\xspace}
 
-\newcommand{\randfrom}{\ensuremath{\stackrel{\$}{\from}}}
+% \newcommand{\randfrom}{\ensuremath{\stackrel{\$}{\from}}}
+\newcommand{\randfrom}{\ensuremath{{\,\from\raisebox{0.5pt}{\!\!\tiny\$}\,}}}
 
 \newcommand{\nins}{\ensuremath{\mathsf{n}}\xspace}
 \newcommand{\ngates}{\ensuremath{\mathsf{q}}\xspace}
