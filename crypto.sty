@@ -321,7 +321,7 @@
 
 \newenvironment{venum}{%
   \begin{list}
-    {{\rm\arabic{ctr}.}\hfill}
+    {{\rmfamily \arabic{ctr}.}\hfill}
     {\usecounter{ctr}%
       \labelwidth=17pt%
       \labelsep=6pt%
@@ -354,7 +354,7 @@
 
 
 \newenvironment{nfbox}[1]{
-  \begin{center}
+  \centering
     \footnotesize
     \begin{framed}
       \begin{minipage}{\linewidth}
@@ -362,14 +362,13 @@
 }{%
       \end{minipage}
     \end{framed}
-  \end{center}
 }
 
 \newenvironment{nfprot}[2]{
   \footnotesize
   \begin{framed}
     \vspace{-3ex}
-    {\begin{center}{\bf Protocol} #1 \end{center}}
+    {\begin{center}{\bfseries Protocol} #1 \end{center}}
     #2
   }{
     \smallskip
@@ -377,17 +376,16 @@
 }
 
 \newenvironment{nfprotfig}[2]{
-  \begin{center}
+  \centering
     \footnotesize
     \begin{framed}
       \begin{minipage}{.95\linewidth}
-        {\begin{center}{\bf Protocol} #1 \end{center}}
+        {\begin{center}{\bfseries Protocol} #1 \end{center}}
         #2
 }{
         \smallskip
       \end{minipage}
     \end{framed}
-  \end{center}
 }
 
 
@@ -396,7 +394,7 @@
     \footnotesize
     \begin{framed}
       \begin{minipage}{.95\linewidth}
-        \underline{{\bf Functionality} #1}
+        \underline{{\bfseries Functionality} #1}
         \medskip
         #2
 }{%
@@ -429,10 +427,10 @@
 \newcommand{\Aenc}{\ensuremath{\mathcal{A}^{\textbf{Enc}}}\xspace}
 
 \newcommand{\party}[1]{\ensuremath{^{(#1)}}}
-\newcommand{\step}[2]{{\bf [#1: #2]}}
+\newcommand{\step}[2]{{\bfseries [#1: #2]}}
 \newcommand{\noti}{{\bar{\imath}}}
 
-\newcommand{\header}[1]{\noindent{\bf #1:}}
+\newcommand{\header}[1]{\noindent{\bfseries #1:}}
 \newcommand{\tweak}{\ensuremath{T}}
 
 \newcommand{\Fail}[1]{\ensuremath{\mathsf{Fail}_{#1}}}
