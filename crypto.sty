@@ -34,7 +34,7 @@
 
 \ifcrypto@reflinks%
   \ifcrypto@color%
-    \RequirePackage[colorlinks=true,citecolor=cyan,linkcolor=blue]{hyperref}
+    \RequirePackage[colorlinks=true]{hyperref}
   \else%
     \RequirePackage{hyperref}
   \fi
@@ -167,8 +167,8 @@
 
 \newcommand{\poly}{\ensuremath{\text{poly}}}
 
-\newcommand{\bigo}[1]{\ensuremath{\OOO\Paren{#1}}}
-\newcommand{\bigotilde}[1]{\ensuremath{\widetilde{\OOO}\Paren{#1}}}
+\newcommand{\bigo}[1]{\ensuremath{O\Paren{#1}}}
+\newcommand{\bigotilde}[1]{\ensuremath{\widetilde{O}\Paren{#1}}}
 \newcommand{\ppt}{\ensuremath{\textsc{ppt}}\xspace}
 \newcommand{\PPT}{\ensuremath{\textsc{ppt}}\xspace}
 
