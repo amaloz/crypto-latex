@@ -122,6 +122,7 @@
 %
 
 \newcommand{\bool}[1][\relax]{{\ensuremath{{\{0,1\}}^{#1}}}\xspace}
+\newcommand{\boolstar}{\bool[*]}
 \newcommand{\one}[1][\relax]{{\ensuremath{1^{#1}}}\xspace}
 \newcommand{\oneton}{\ensuremath{\{1,\ldots,n\}}}
 \newcommand{\oneto}[1]{\ensuremath{\{1,\ldots,#1\}}}
@@ -161,23 +162,23 @@
 \newcommand{\Paren}[1]{\ensuremath{\left(#1\right)}}
 \newcommand{\set}[1]{\ensuremath{\{#1\}}}
 \newcommand{\Set}[1]{\ensuremath{\left\{#1\right\}}}
-\newcommand{\inv}{^{-1}}
 
 \newcommand{\Prob}[1]{{\Pr\left[{#1}\right]}}
-
 \newcommand{\Succ}{\ensuremath{\mathsf{Succ}}\xspace}
-
-\newcommand{\poly}{\ensuremath{\mathsf{poly}}}
 
 \newcommand{\bigo}[1]{\ensuremath{O\Paren{#1}}}
 \newcommand{\bigotilde}[1]{\ensuremath{\widetilde{O}\Paren{#1}}}
 \newcommand{\ppt}{\ensuremath{\textsc{ppt}}\xspace}
 \newcommand{\PPT}{\ensuremath{\textsc{ppt}}\xspace}
+\newcommand{\poly}{\ensuremath{\mathsf{poly}}}
+\newcommand{\inv}{^{-1}}
 
+% Complexity classes
 \newcommand{\NCone}{{\ensuremath{\mathbf{NC}$^1$}}\xspace}
 \newcommand{\Ptime}{{\ensuremath{\mathbf{P}}}\xspace}
 \newcommand{\NP}{{\ensuremath{\mathbf{NP}}}\xspace}
 
+% Party macros
 \newcommand{\Party}[1][\relax]{\ensuremath{P_{#1}}\xspace}
 \newcommand{\Partym}[1][\relax]{\ensuremath{P_{#1}^*}\xspace}
 \newcommand{\PA}{\Party[1]}
@@ -205,6 +206,10 @@
 % http://www.matthewflickinger.com/blog/archives/2005/02/20/latex_mod_spacing.asp
 \newcommand{\imod}[1]{\allowbreak\mkern10mu({\operator@font mod}\,\,#1)}
 
+% Bilinear groups
+
+\newcommand{\egg}{{\ensuremath{{e(g,g)}}}\xspace}
+
 %
 % Reference macros
 %
@@ -231,72 +236,79 @@
 \newcommand{\reftab}[1]{\sref{Table}{#1}}
 \newcommand{\refthm}[1]{\sref{Theorem}{#1}}
 
+% Bellare, Hoang, Rogaway notation
 \newcommand{\Gb}{{\ensuremath{\mathsf{Garble}}}\xspace}
 \newcommand{\En}{{\ensuremath{\mathsf{Encrypt}}}\xspace}
 \newcommand{\De}{{\ensuremath{\mathsf{Decrypt}}}\xspace}
 \newcommand{\ev}{{\ensuremath{\mathsf{eval}}}\xspace}
 \newcommand{\Ev}{{\ensuremath{\mathsf{Eval}}}\xspace}
 
-\newcommand{\PrvInd}{{\ensuremath{\mathrm{PrvInd}}}\xspace}
-\newcommand{\PrvSim}{{\ensuremath{\mathrm{PrvSim}}}\xspace}
-
-\newcommand{\KeyGen}{{\ensuremath{\mathsf{KeyGen}}}\xspace}
-\newcommand{\Gen}{{\ensuremath{\mathsf{Gen}}}\xspace}
-\newcommand{\Enc}{{\ensuremath{\mathsf{Enc}}}\xspace}
-\newcommand{\Dec}{{\ensuremath{\mathsf{Dec}}}\xspace}
+% Generate
 \newcommand{\gen}{{\ensuremath{\mathsf{gen}}}\xspace}
-\newcommand{\enc}{{\ensuremath{\mathsf{enc}}}\xspace}
-\newcommand{\dec}{{\ensuremath{\mathsf{dec}}}\xspace}
+\newcommand{\Gen}{{\ensuremath{\mathsf{Gen}}}\xspace}
+\newcommand{\KeyGen}{{\ensuremath{\mathsf{KeyGen}}}\xspace}
 
+% Encrypt
+\newcommand{\enc}{{\ensuremath{\mathsf{enc}}}\xspace}
+\newcommand{\Enc}{{\ensuremath{\mathsf{Enc}}}\xspace}
+\newcommand{\Encrypt}{{\ensuremath{\mathsf{Encrypt}}}\xspace}
+
+% Decrypt
+\newcommand{\dec}{{\ensuremath{\mathsf{dec}}}\xspace}
+\newcommand{\Dec}{{\ensuremath{\mathsf{Dec}}}\xspace}
+\newcommand{\Decrypt}{{\ensuremath{\mathsf{Decrypt}}}\xspace}
+
+% Zero-knowledge
 \newcommand{\Prv}{{\ensuremath{\mathsf{Prv}}}\xspace}
 \newcommand{\Ver}{{\ensuremath{\mathsf{Ver}}}\xspace}
 
+% Public key
+\newcommand{\pk}{{\ensuremath{\mathsf{pk}}}\xspace}
 \newcommand{\PK}{{\ensuremath{\textsc{pk}}}\xspace}
+
+% Private key
+\newcommand{\sk}{{\ensuremath{\mathsf{sk}}}\xspace}
 \newcommand{\SK}{{\ensuremath{\textsc{sk}}}\xspace}
 
-\newcommand{\pk}{{\ensuremath{\mathsf{pk}}}\xspace}
-\newcommand{\sk}{{\ensuremath{\mathsf{sk}}}\xspace}
-
-\newcommand{\aux}{{\ensuremath{\mathsf{aux}}}\xspace}
-
-
-\newcommand{\Eval}{{\ensuremath{\mathsf{Eval}}}\xspace}
-\newcommand{\Samp}{{\ensuremath{\mathsf{Samp}}}\xspace}
-
+% CRS stuff
+\newcommand{\crs}{{\ensuremath{\mathsf{crs}}}\xspace}
 \newcommand{\CRSGen}{{\ensuremath{\mathsf{CRSGen}}}\xspace}
 
+% Other
 \newcommand{\PrivK}{{\ensuremath{\mathsf{PrivK}}}\xspace}
 \newcommand{\PubK}{{\ensuremath{\mathsf{PubK}}}\xspace}
-
-\newcommand{\crs}{{\ensuremath{\mathsf{crs}}}\xspace}
-
 \newcommand{\com}{\ensuremath{\mathsf{com}}\xspace}
 \newcommand{\proc}{{\ensuremath{\mathbf{procedure}}}\xspace}
 \newcommand{\negl}{\ensuremath{\mathsf{negl}}\xspace}
+\newcommand{\aux}{{\ensuremath{\mathsf{aux}}}\xspace}
+\newcommand{\Eval}{{\ensuremath{\mathsf{Eval}}}\xspace}
+\newcommand{\Samp}{{\ensuremath{\mathsf{Samp}}}\xspace}
+\newcommand{\PrvInd}{{\ensuremath{\mathrm{PrvInd}}}\xspace}
+\newcommand{\PrvSim}{{\ensuremath{\mathrm{PrvSim}}}\xspace}
+\newcommand{\Setup}{\ensuremath{\mathsf{Setup}}\xspace}
 
-
-\newcommand{\len}{\ensuremath{\ell}\xspace}
-
+% Security parameters
 \newcommand{\secpar}{\secparam}
 \newcommand{\ssecparam}{\ensuremath{s}\xspace}
 \newcommand{\ssecpar}{\ssecparam}
-
-\newcommand{\mask}{\ensuremath{\lambda}\xspace}
-
 \newcommand{\boolsec}{\ensuremath{\bool^\secparam}\xspace}
-\newcommand{\boolstar}{\bool[*]}
+
 \newcommand{\onesec}{\ensuremath{1^\secparam}\xspace}
 
-\newcommand{\onehalf}{\ensuremath{\frac{1}{2}}\xspace}
-
+% Obfuscation
 \newcommand{\Obf}{{\ensuremath{\text{\textsf{Obf}}}}\xspace}
 \newcommand{\iO}{{\ensuremath{\mathsf{iO}}}\xspace}
 \newcommand{\diO}{{\ensuremath{\mathsf{diO}}}\xspace}
 
+% Security definitions
 \newcommand{\indcpa}{\textsf{IND-CPA}\xspace}
 
+% Other
 \newcommand{\accept}{{\ensuremath{\mathsf{accept}}}\xspace}
 \newcommand{\reject}{{\ensuremath{\mathsf{reject}}}\xspace}
+\newcommand{\mask}{\ensuremath{\lambda}\xspace}
+\newcommand{\onehalf}{\ensuremath{\frac{1}{2}}\xspace}
+\newcommand{\len}{\ensuremath{\ell}\xspace}
 
 %
 % Environments
