@@ -23,6 +23,7 @@
 \DeclareBoolOption[false]{color}
 \DeclareBoolOption[false]{draft}
 \DeclareBoolOption[false]{reflinks}
+\DeclareBoolOption[false]{lncs}
 \DeclareBoolOption[false]{submission}
 \DeclareStringOption[k]{secparam}
 \ProcessKeyvalOptions{crypto}
@@ -41,7 +42,6 @@
 \fi
 
 \RequirePackage{amsfonts,amsmath,amssymb}
-% \RequirePackage{amsthm}
 \RequirePackage{framed}
 \RequirePackage{url}
 \RequirePackage{xspace}
@@ -235,6 +235,11 @@
 \newcommand{\refstep}[1]{\sref{Step}{#1}}
 \newcommand{\reftab}[1]{\sref{Table}{#1}}
 \newcommand{\refthm}[1]{\sref{Theorem}{#1}}
+\ifcrypto@lncs%
+\renewcommand{\refeqn}[1]{\ref{(#1)}}
+\renewcommand{\reffig}[1]{\sref{Fig.}{#1}}
+\renewcommand{\refsec}[1]{\sref{Sect.}{#1}}
+\fi
 
 % Bellare, Hoang, Rogaway notation
 \newcommand{\Gb}{{\ensuremath{\mathsf{Garble}}}\xspace}
@@ -297,7 +302,8 @@
 
 % Obfuscation
 \newcommand{\Obf}{{\ensuremath{\text{\textsf{Obf}}}}\xspace}
-\newcommand{\iO}{{\ensuremath{\mathsf{iO}}}\xspace}
+% \newcommand{\iO}{{\ensuremath{\mathsf{iO}}}\xspace}
+\newcommand{\iO}{{\ensuremath{i\OOO}}\xspace}
 \newcommand{\diO}{{\ensuremath{\mathsf{diO}}}\xspace}
 
 % Security definitions
