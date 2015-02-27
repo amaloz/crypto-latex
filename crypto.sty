@@ -263,6 +263,9 @@
 \newcommand{\Dec}{{\ensuremath{\mathsf{Dec}}}\xspace}
 \newcommand{\Decrypt}{{\ensuremath{\mathsf{Decrypt}}}\xspace}
 
+% Signatures
+\newcommand{\Sig}{{\ensuremath{\mathsf{Sig}}}\xspace}
+
 % Zero-knowledge
 \newcommand{\Prv}{{\ensuremath{\mathsf{Prv}}}\xspace}
 \newcommand{\Ver}{{\ensuremath{\mathsf{Ver}}}\xspace}
@@ -294,10 +297,12 @@
 
 % Security parameters
 \newcommand{\secpar}{\secparam}
-\newcommand{\ssecparam}{\ensuremath{s}\xspace}
+\newcommand{\csp}{\secpar}
+\newcommand{\ssecparam}{\ensuremath{\rho}\xspace}
 \newcommand{\ssecpar}{\ssecparam}
-\newcommand{\boolsec}{\ensuremath{\bool^\secparam}\xspace}
+\newcommand{\ssp}{\ssecpar}
 
+\newcommand{\boolsec}{\ensuremath{\bool^\secparam}\xspace}
 \newcommand{\onesec}{\ensuremath{1^\secparam}\xspace}
 
 % Obfuscation
@@ -315,6 +320,12 @@
 \newcommand{\mask}{\ensuremath{\lambda}\xspace}
 \newcommand{\onehalf}{\ensuremath{\frac{1}{2}}\xspace}
 \newcommand{\len}{\ensuremath{\ell}\xspace}
+
+\newcommand{\vct}[1]{\ensuremath{\mathbf{#1}}\xspace}
+
+% Oblivious Transfer
+\newcommand{\genot}[4]{\ensuremath{\binom{#1}{#2}\text{-OT}_{#3}^{#4}}\xspace}
+\newcommand{\ot}[2]{\genot{2}{1}{#1}{#2}}
 
 %
 % Environments
@@ -427,12 +438,9 @@
   \end{center}
 }
 
-\newcommand{\cancel}[1]{}
-
 \newcommand{\Func}[1][\relax]{\ensuremath{\mathcal{F}_\mathbf{#1}}\xspace}
 \newcommand{\Prot}[1][\relax]{\ensuremath{\Pi_\mathbf{#1}}\xspace}
 
-% \newcommand{\randfrom}{\ensuremath{\stackrel{\$}{\from}}}
 \newcommand{\randfrom}{\ensuremath{{\,\from\raisebox{0.5pt}{\!\!\tiny\$}\,}}}
 
 \newcommand{\nins}{\ensuremath{\mathsf{n}}\xspace}
