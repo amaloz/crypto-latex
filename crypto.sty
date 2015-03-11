@@ -131,6 +131,7 @@
 
 \renewcommand{\to}{\ensuremath{\rightarrow}}
 \newcommand{\from}{\ensuremath{\leftarrow}}
+\newcommand{\randfrom}{\ensuremath{{\,\from\raisebox{0.5pt}{\!\!\tiny\$}\,}}}
 
 \newcommand{\intersection}{\ensuremath{\cap}}
 \newcommand{\union}{\ensuremath{\cup}}
@@ -173,53 +174,52 @@
 \newcommand{\poly}{\ensuremath{\mathsf{poly}}}
 \newcommand{\inv}{^{-1}}
 
+\newcommand{\ind}{\ensuremath{\approx}}
+\newcommand{\cind}{\stackrel{\textrm{c}}{\ind}}
+\newcommand{\dind}{\stackrel{\textrm{d}}{\ind}}
+
+% http://www.matthewflickinger.com/blog/archives/2005/02/20/latex_mod_spacing.asp
+\newcommand{\imod}[1]{\allowbreak\mkern10mu({\operator@font mod}\,\,#1)}
+
 % Complexity classes
 \newcommand{\NCone}{{\ensuremath{\mathbf{NC}$^1$}}\xspace}
 \newcommand{\Ptime}{{\ensuremath{\mathbf{P}}}\xspace}
 \newcommand{\NP}{{\ensuremath{\mathbf{NP}}}\xspace}
 
 % Party macros
-\newcommand{\Party}[1][\relax]{\ensuremath{P_{#1}}\xspace}
-\newcommand{\Partym}[1][\relax]{\ensuremath{P_{#1}^*}\xspace}
-\newcommand{\PA}{\Party[1]}
-\newcommand{\PB}{\Party[2]}
-\newcommand{\PC}{\Party[3]}
-\newcommand{\PAm}{\Partym[1]}
-\newcommand{\PBm}{\Partym[2]}
-\newcommand{\PCm}{\Partym[3]}
+\newcommand{\Party}[1][\relax]{{\ensuremath{P_{#1}}}\xspace}
+\newcommand{\Partym}[1][\relax]{{\ensuremath{P_{#1}^*}}\xspace}
+\newcommand{\PA}{{\Party[1]}\xspace}
+\newcommand{\PB}{{\Party[2]}\xspace}
+\newcommand{\PC}{{\Party[3]}\xspace}
+\newcommand{\PAm}{{\Partym[1]}\xspace}
+\newcommand{\PBm}{{\Partym[2]}\xspace}
+\newcommand{\PCm}{{\Partym[3]}\xspace}
 
-\newcommand{\Sim}[1][\relax]{\ensuremath{\SSS_{#1}}\xspace}
-\newcommand{\Adv}[1][\relax]{\ensuremath{\mathcal{A}_{#1}}\xspace}
-\newcommand{\Oracle}{\ensuremath{\mathcal{O}}\xspace}
+\newcommand{\Sim}[1][\relax]{{\ensuremath{\SSS_{#1}}}\xspace}
+\newcommand{\Adv}[1][\relax]{{\ensuremath{\mathcal{A}_{#1}}}\xspace}
+\newcommand{\Aenc}{{\ensuremath{\mathcal{A}^{\textbf{Enc}}}}\xspace}
+\newcommand{\Oracle}{{\ensuremath{\mathcal{O}}}\xspace}
 
 \newcommand{\Hybrid}[1][\relax]{\ensuremath{\mathbf{Hybrid_{#1}}}\xspace}
 \newcommand{\Real}{\ensuremath{\mathbf{Real}}\xspace}
 \newcommand{\Ideal}{\ensuremath{\mathbf{Ideal}}\xspace}
 
-\newcommand{\ind}{\ensuremath{\approx}}
-\newcommand{\cind}{\stackrel{\textrm{c}}{\ind}}
-\newcommand{\dind}{\stackrel{\textrm{d}}{\ind}}
-
+% Groups
 \newcommand{\Zp}{{\ensuremath{\ZZ_p}}\xspace}
 \newcommand{\Zq}{{\ensuremath{\ZZ_q}}\xspace}
 
-% http://www.matthewflickinger.com/blog/archives/2005/02/20/latex_mod_spacing.asp
-\newcommand{\imod}[1]{\allowbreak\mkern10mu({\operator@font mod}\,\,#1)}
-
 % Bilinear groups
-
 \newcommand{\egg}{{\ensuremath{{e(g,g)}}}\xspace}
 
 %
 % Reference macros
 %
-
 \ifcrypto@reflinks%
   \newcommand{\sref}[2]{\hyperref[#2]{#1~\ref*{#2}}}
 \else
   \newcommand{\sref}[2]{#1~\ref{#2}}
 \fi
-
 \newcommand{\refalg}[1]{\sref{Algorithm}{#1}}
 \newcommand{\refapx}[1]{\sref{Appendix}{#1}}
 \newcommand{\refconst}[1]{\sref{Construction}{#1}}
@@ -247,6 +247,13 @@
 \newcommand{\De}{{\ensuremath{\mathsf{Decrypt}}}\xspace}
 \newcommand{\ev}{{\ensuremath{\mathsf{eval}}}\xspace}
 \newcommand{\Ev}{{\ensuremath{\mathsf{Eval}}}\xspace}
+\newcommand{\nins}{\ensuremath{\mathsf{n}}\xspace}
+\newcommand{\ngates}{\ensuremath{\mathsf{q}}\xspace}
+\newcommand{\nouts}{\ensuremath{\mathsf{m}}\xspace}
+\newcommand{\lfn}{\ensuremath{L}\xspace}
+\newcommand{\rfn}{\ensuremath{R}\xspace}
+\newcommand{\gfn}{\ensuremath{G}\xspace}
+\newcommand{\pfn}{\ensuremath{P}\xspace}
 
 % Generate
 \newcommand{\gen}{{\ensuremath{\mathsf{gen}}}\xspace}
@@ -307,12 +314,31 @@
 
 % Obfuscation
 \newcommand{\Obf}{{\ensuremath{\text{\textsf{Obf}}}}\xspace}
-% \newcommand{\iO}{{\ensuremath{\mathsf{iO}}}\xspace}
 \newcommand{\iO}{{\ensuremath{i\OOO}}\xspace}
 \newcommand{\diO}{{\ensuremath{\mathsf{diO}}}\xspace}
 
 % Security definitions
 \newcommand{\indcpa}{\textsf{IND-CPA}\xspace}
+
+% Oblivious Transfer
+\newcommand{\genot}[4]{{\ensuremath{\binom{#2}{#1}\text{-OT}_{#3}^{#4}}}\xspace}
+\newcommand{\ot}[2]{\genot{1}{2}{#1}{#2}}
+
+% Functionalities/Protocols
+\newcommand{\Func}[1][\relax]{\ensuremath{\mathcal{F}_\mathbf{#1}}\xspace}
+\newcommand{\Prot}[1][\relax]{\ensuremath{\Pi_\mathbf{#1}}\xspace}
+
+\newcommand{\Fpki}{\Func[\mathsf{PKI}]\xspace}
+
+% Garbled circuits
+\newcommand{\GC}{\ensuremath{\text{GC}}\xspace}
+\newcommand{\C}{\ensuremath{C}\xspace}
+
+% Secret sharing
+\newcommand{\sh}[1]{\Brac{#1}}
+\newcommand{\bsh}[1]{\angles{#1}}
+\newcommand{\ash}[1]{[\![#1]\!]}
+\newcommand{\s}[1]{\ensuremath{\hat{#1}}\xspace}
 
 % Other
 \newcommand{\accept}{{\ensuremath{\mathsf{accept}}}\xspace}
@@ -323,9 +349,14 @@
 
 \newcommand{\vct}[1]{\ensuremath{\mathbf{#1}}\xspace}
 
-% Oblivious Transfer
-\newcommand{\genot}[4]{\ensuremath{\binom{#1}{#2}\text{-OT}_{#3}^{#4}}\xspace}
-\newcommand{\ot}[2]{\genot{2}{1}{#1}{#2}}
+\newcommand{\party}[1]{\ensuremath{^{(#1)}}}
+\newcommand{\step}[2]{{\bfseries [#1: #2]}}
+\newcommand{\noti}{{\bar{\imath}}}
+
+\newcommand{\header}[1]{\noindent{\bfseries #1:}}
+\newcommand{\tweak}{\ensuremath{T}}
+
+\newcommand{\Fail}[1]{\ensuremath{\mathsf{Fail}_{#1}}}
 
 %
 % Environments
@@ -387,7 +418,6 @@
   \end{itemize}
 }
 
-
 \newenvironment{nfbox}[1]{
   \centering
     \footnotesize
@@ -423,7 +453,6 @@
     \end{framed}
 }
 
-
 \newenvironment{nffunc}[2]{
   \begin{center}
     \footnotesize
@@ -437,35 +466,6 @@
     \end{framed}
   \end{center}
 }
-
-\newcommand{\Func}[1][\relax]{\ensuremath{\mathcal{F}_\mathbf{#1}}\xspace}
-\newcommand{\Prot}[1][\relax]{\ensuremath{\Pi_\mathbf{#1}}\xspace}
-
-\newcommand{\randfrom}{\ensuremath{{\,\from\raisebox{0.5pt}{\!\!\tiny\$}\,}}}
-
-\newcommand{\nins}{\ensuremath{\mathsf{n}}\xspace}
-\newcommand{\ngates}{\ensuremath{\mathsf{q}}\xspace}
-\newcommand{\nouts}{\ensuremath{\mathsf{m}}\xspace}
-\newcommand{\lfn}{\ensuremath{L}\xspace}
-\newcommand{\rfn}{\ensuremath{R}\xspace}
-\newcommand{\gfn}{\ensuremath{G}\xspace}
-\newcommand{\pfn}{\ensuremath{P}\xspace}
-
-\newcommand{\C}{\ensuremath{C}\xspace}
-\newcommand{\sh}[1]{\Brac{#1}}
-\newcommand{\bsh}[1]{\angles{#1}}
-\newcommand{\ash}[1]{[\![#1]\!]}
-\newcommand{\s}[1]{\ensuremath{\hat{#1}}\xspace}
-\newcommand{\Aenc}{\ensuremath{\mathcal{A}^{\textbf{Enc}}}\xspace}
-
-\newcommand{\party}[1]{\ensuremath{^{(#1)}}}
-\newcommand{\step}[2]{{\bfseries [#1: #2]}}
-\newcommand{\noti}{{\bar{\imath}}}
-
-\newcommand{\header}[1]{\noindent{\bfseries #1:}}
-\newcommand{\tweak}{\ensuremath{T}}
-
-\newcommand{\Fail}[1]{\ensuremath{\mathsf{Fail}_{#1}}}
 
 %
 % bibtex stuff
