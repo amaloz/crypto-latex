@@ -418,23 +418,21 @@
   \end{itemize}
 }
 
-\newenvironment{nfbox}[1]{%
+\newenvironment{nfbox}{%
   \centering\footnotesize
   \begin{framed}
     \begin{minipage}{\linewidth}
-      #1
 }{%
     \end{minipage}
   \end{framed}
 }
 
-\newenvironment{nfboxtitle}[2]{%
+\newenvironment{nfboxtitle}[1]{%
   \begin{center}
     \footnotesize
     \begin{framed}
       \begin{minipage}{.95\linewidth}
         {\begin{center}\underline{#1}\end{center}}
-        {#2}
 }{%
       \end{minipage}
     \end{framed}
@@ -442,39 +440,24 @@
 }
 
 
-\newenvironment{nfprot}[2]{%
+\newenvironment{nfprot}[1]{%
   \begin{center}
     \footnotesize
     \begin{framed}
       \begin{minipage}{.95\linewidth}
         {\begin{center}\underline{\textbf{Protocol} #1}\end{center}}
-        {#2}
 }{%
       \end{minipage}
     \end{framed}
   \end{center}
 }
 
-\newenvironment{nfprotfig}[2]{
-  \centering
-    \footnotesize
-    \begin{framed}
-      \begin{minipage}{.95\linewidth}
-        {\begin{center}{\bfseries Protocol} #1 \end{center}}
-        #2
-}{
-        \smallskip
-      \end{minipage}
-    \end{framed}
-}
-
-\newenvironment{nffunc}[2]{%
+\newenvironment{nffunc}[1]{%
   \begin{center}
     \footnotesize
     \begin{framed}
       \begin{minipage}{.95\linewidth}
         {\begin{center}\underline{\textbf{Functionality} #1}\end{center}}
-        {#2}
 }{%
       \end{minipage}
     \end{framed}
