@@ -106,7 +106,7 @@
 \newcommand\NNN{\ensuremath{\mathcal N}\xspace}
 \newcommand\OOO{\ensuremath{\mathcal O}\xspace}
 \newcommand\PPP{\ensuremath{\mathcal P}\xspace}
-\newcommand\QQQ{\ensuremath{\mathcal Q}\xspace}
+\newcommand\QQQ{{\ensuremath{\mathcal Q}}\xspace}
 \newcommand\RRR{\ensuremath{\mathcal R}\xspace}
 \newcommand\SSS{\ensuremath{\mathcal S}\xspace}
 \newcommand\TTT{\ensuremath{\mathcal T}\xspace}
@@ -198,7 +198,7 @@
 \newcommand{\PCm}{{\Partym[3]}\xspace}
 
 \newcommand{\Sim}[1][\relax]{{\ensuremath{\SSS_{#1}}}\xspace}
-\newcommand{\Adv}[1][\relax]{{\ensuremath{\mathcal{A}_{#1}}}\xspace}
+\newcommand{\Adv}[1][\relax]{{{\ensuremath{\mathcal{A}_{#1}}}}\xspace}
 \newcommand{\Aenc}{{\ensuremath{\mathcal{A}^{\textbf{Enc}}}}\xspace}
 \newcommand{\Oracle}{{\ensuremath{\mathcal{O}}}\xspace}
 
@@ -272,7 +272,16 @@
 \newcommand{\Decrypt}{{\ensuremath{\mathsf{Decrypt}}}\xspace}
 
 % Signatures
-\newcommand{\Sig}{{\ensuremath{\mathsf{Sig}}}\xspace}
+\newcommand{\Sign}{{\ensuremath{\mathsf{Sign}}}\xspace}
+\newcommand{\Verify}{{\ensuremath{\mathsf{Verify}}}\xspace}
+\newcommand{\eucma}{\textsf{EU-CMA}\xspace}
+\newcommand{\Sigforge}[3]{\ensuremath{\mathsf{Sig\text{-}forge}_{#2,#3}^{\mathsf{\scriptstyle{#1}}}}\xspace}
+
+% Commitments
+\newcommand{\Com}{{\ensuremath{\mathsf{Com}}}\xspace}
+\newcommand{\Open}{{\ensuremath{\mathsf{Open}}}\xspace}
+\newcommand{\Combind}[3]{\ensuremath{\mathsf{Com\text{-}bind}_{#2,#3}^{\mathsf{\scriptstyle{#1}}}}\xspace}
+\newcommand{\Comhide}[3]{\ensuremath{\mathsf{Com\text{-}hide}_{#2,#3}^{\mathsf{\scriptstyle{#1}}}}\xspace}
 
 % Zero-knowledge
 \newcommand{\Prv}{{\ensuremath{\mathsf{Prv}}}\xspace}
@@ -285,6 +294,12 @@
 % Private key
 \newcommand{\sk}{{\ensuremath{\mathsf{sk}}}\xspace}
 \newcommand{\SK}{{\ensuremath{\textsc{sk}}}\xspace}
+
+% Verification key
+\newcommand{\vk}{{\ensuremath{\mathsf{vk}}}\xspace}
+
+% Commitment key
+\newcommand{\ck}{{\ensuremath{\mathsf{ck}}}\xspace}
 
 % CRS stuff
 \newcommand{\crs}{{\ensuremath{\mathsf{crs}}}\xspace}
@@ -333,7 +348,8 @@
 \newcommand{\Func}[1][\relax]{\ensuremath{\mathcal{F}_\mathbf{#1}}\xspace}
 \newcommand{\Prot}[1][\relax]{\ensuremath{\Pi_\mathbf{#1}}\xspace}
 
-\newcommand{\Fpki}{\Func[\mathsf{PKI}]\xspace}
+\newcommand{\Fot}{\Func[\mathsf{OT}]}
+\newcommand{\Fpki}{\Func[\mathsf{PKI}]}
 
 % Garbled circuits
 \newcommand{\GC}{\ensuremath{\text{GC}}\xspace}
