@@ -106,7 +106,7 @@
 \newcommand\NNN{\ensuremath{\mathcal N}\xspace}
 \newcommand\OOO{\ensuremath{\mathcal O}\xspace}
 \newcommand\PPP{\ensuremath{\mathcal P}\xspace}
-\newcommand\QQQ{\ensuremath{\mathcal Q}\xspace}
+\newcommand\QQQ{{\ensuremath{\mathcal Q}}\xspace}
 \newcommand\RRR{\ensuremath{\mathcal R}\xspace}
 \newcommand\SSS{\ensuremath{\mathcal S}\xspace}
 \newcommand\TTT{\ensuremath{\mathcal T}\xspace}
@@ -146,6 +146,7 @@
 
 \newcommand{\randin}{\ensuremath{\in_R}}
 \newcommand{\eqdef}{\stackrel{\textrm{def}}{=}}
+\newcommand{\eqq}{\stackrel{\textrm{?}}{=}}
 \newcommand{\inq}{\stackrel{\textrm{?}}{\in}}
 
 \newcommand{\angles}[1]{\ensuremath{\langle{#1}\rangle}}
@@ -197,7 +198,7 @@
 \newcommand{\PCm}{{\Partym[3]}\xspace}
 
 \newcommand{\Sim}[1][\relax]{{\ensuremath{\SSS_{#1}}}\xspace}
-\newcommand{\Adv}[1][\relax]{{\ensuremath{\mathcal{A}_{#1}}}\xspace}
+\newcommand{\Adv}[1][\relax]{{{\ensuremath{\mathcal{A}_{#1}}}}\xspace}
 \newcommand{\Aenc}{{\ensuremath{\mathcal{A}^{\textbf{Enc}}}}\xspace}
 \newcommand{\Oracle}{{\ensuremath{\mathcal{O}}}\xspace}
 
@@ -242,11 +243,12 @@
 \fi
 
 % Bellare, Hoang, Rogaway notation
-\newcommand{\Gb}{{\ensuremath{\mathsf{Garble}}}\xspace}
-\newcommand{\En}{{\ensuremath{\mathsf{Encrypt}}}\xspace}
-\newcommand{\De}{{\ensuremath{\mathsf{Decrypt}}}\xspace}
-\newcommand{\ev}{{\ensuremath{\mathsf{eval}}}\xspace}
-\newcommand{\Ev}{{\ensuremath{\mathsf{Eval}}}\xspace}
+\newcommand{\Gb}{{\ensuremath{\mathsf{Gb}}}\xspace}
+\newcommand{\En}{{\ensuremath{\mathsf{En}}}\xspace}
+\newcommand{\De}{{\ensuremath{\mathsf{De}}}\xspace}
+\newcommand{\ev}{{\ensuremath{\mathsf{ev}}}\xspace}
+\newcommand{\Ev}{{\ensuremath{\mathsf{Ev}}}\xspace}
+\newcommand{\Ve}{{\ensuremath{\mathsf{Ve}}}\xspace}
 \newcommand{\nins}{\ensuremath{\mathsf{n}}\xspace}
 \newcommand{\ngates}{\ensuremath{\mathsf{q}}\xspace}
 \newcommand{\nouts}{\ensuremath{\mathsf{m}}\xspace}
@@ -271,7 +273,16 @@
 \newcommand{\Decrypt}{{\ensuremath{\mathsf{Decrypt}}}\xspace}
 
 % Signatures
-\newcommand{\Sig}{{\ensuremath{\mathsf{Sig}}}\xspace}
+\newcommand{\Sign}{{\ensuremath{\mathsf{Sign}}}\xspace}
+\newcommand{\Verify}{{\ensuremath{\mathsf{Verify}}}\xspace}
+\newcommand{\eucma}{\textsf{EU-CMA}\xspace}
+\newcommand{\Sigforge}[3]{\ensuremath{\mathsf{Sig\text{-}forge}_{#2,#3}^{\mathsf{\scriptstyle{#1}}}}\xspace}
+
+% Commitments
+\newcommand{\Com}{{\ensuremath{\mathsf{Com}}}\xspace}
+\newcommand{\Open}{{\ensuremath{\mathsf{Open}}}\xspace}
+\newcommand{\Combind}[3]{\ensuremath{\mathsf{Com\text{-}bind}_{#2,#3}^{\mathsf{\scriptstyle{#1}}}}\xspace}
+\newcommand{\Comhide}[3]{\ensuremath{\mathsf{Com\text{-}hide}_{#2,#3}^{\mathsf{\scriptstyle{#1}}}}\xspace}
 
 % Zero-knowledge
 \newcommand{\Prv}{{\ensuremath{\mathsf{Prv}}}\xspace}
@@ -284,6 +295,12 @@
 % Private key
 \newcommand{\sk}{{\ensuremath{\mathsf{sk}}}\xspace}
 \newcommand{\SK}{{\ensuremath{\textsc{sk}}}\xspace}
+
+% Verification key
+\newcommand{\vk}{{\ensuremath{\mathsf{vk}}}\xspace}
+
+% Commitment key
+\newcommand{\ck}{{\ensuremath{\mathsf{ck}}}\xspace}
 
 % CRS stuff
 \newcommand{\crs}{{\ensuremath{\mathsf{crs}}}\xspace}
@@ -332,6 +349,7 @@
 \newcommand{\Func}[1][\relax]{\ensuremath{\mathcal{F}_\mathbf{#1}}\xspace}
 \newcommand{\Prot}[1][\relax]{\ensuremath{\Pi_\mathbf{#1}}\xspace}
 
+\newcommand{\Fot}{\Func[\mathsf{OT}]}
 \newcommand{\Fpki}{\Func[\mathsf{PKI}]}
 
 % Garbled circuits
