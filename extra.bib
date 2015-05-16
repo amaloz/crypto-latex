@@ -10,6 +10,29 @@
   note = "\FullVersion{https://eprint.iacr.org/2001/069}",
 }
 
+@Article{JACM:GolGolMic86,
+  author = "Oded Goldreich and Shafi Goldwasser and Silvio Micali",
+  title = "How to Construct Random Functions",
+  journal = "Journal of the ACM",
+  pages = "792--807",
+  volume = 33,
+  number = 4,
+  month = oct,
+  year = 1986,
+}
+
+@Article{JACM:GolMicWig91,
+  author = "Oded Goldreich and Silvio Micali and Avi Wigderson",
+  title = "Proofs that Yield Nothing But Their Validity or All Languages in {NP}
+                  Have Zero-knowledge Proof Systems",
+  journal = "Journal of the ACM",
+  pages = "690--728",
+  volume = 38,
+  number = 3,
+  month = jul,
+  year = 1991,
+}
+
 @Article{JCSS:Barrington89,
   author = "David A. Barrington",
   title = "Bounded-width Polynomial-size Branching Programs Recognize Exactly
@@ -21,6 +44,37 @@
   year = 1989,
 }
 
+@Article{JCSS:GolMic84,
+  author = "Shafi Goldwasser and Silvio Micali",
+  title = "Probabilistic Encryption",
+  journal = "Journal of Computer and Systems Sciences",
+  pages = "270--299",
+  volume = 28,
+  number = 2,
+  month = apr,
+  year = 1984,
+}
+
+@Article{SIAMJ:GolMicRac89,
+  author = "Shafi Goldwasser and Silvio Micali and Charles Rackoff",
+  title = "The knowledge complexity of interactive proof systems",
+  pages = "186--208",
+  journal = "SIAM Journal on Computing",
+  volume = 18,
+  number = 1,
+  year = 1989,
+}
+
+@Article{SIAMJ:LubRac88,
+  author = "Michael Luby and Charlie Rackoff",
+  title = "How to construct pseudorandom permutations from pseudorandom functions",
+  pages = "373--386",
+  journal = "SIAM Journal on Computing",
+  volume = 17,
+  number = 2,
+  year = 1988,
+}
+
 @Article{SIAMJ:Micali00,
   author = "Silvio Micali",
   title = "Computationally sound proofs",
@@ -29,6 +83,17 @@
   volume = 30,
   number = 4,
   year = 2000,
+}
+
+@Article{TIT:DifHel76,
+  author = "Whitfield Diffie and Martin E. Hellman",
+  title = "New Directions in Cryptography",
+  pages = "644--654",
+  journal = "IEEE Transactions on Information Theory",
+  volume = 22,
+  number = 6,
+  month = nov,
+  year = 1976,
 }
 
 @Article{Dent06,
@@ -81,6 +146,15 @@
   year      = 2009,
 }
 
+@InProceedings{CSF:LiuHicShi13,
+  author = "Chang Liu and Michael Hicks and Elaine Shi",
+  title = "Memory Trace Oblivious Execution",
+  booktitle = {26th IEEE Computer Security Foundations Symposium},
+  editor = "V\'{e}ronique Cortier and Anupam Datta",
+  Publisher = {{IEEE} Computer Society Press},
+  year = 2013,
+}
+
 @InProceedings{CSF:MalKatGre14,
   author = "Alex J. Malozemoff and Jonathan Katz and Matthew D. Green",
   title = "Automated Analysis and Synthesis of Block-Cipher Modes of Operation",
@@ -89,25 +163,6 @@
   Publisher = {{IEEE} Computer Society Press},
   year = 2014,
   note = "\FullVersion{https://eprint.iacr.org/2014/774}",
-}
-
-@InProceedings{EC:ALSZ15,
-  author = "Gilad Asharov and Yehuda Lindell and Thomas Schneider and Michael Zohner",
-  title = "More Efficient Oblivious Transfer Extensions with Security for Malicious Adversaries",
-  booktitle = eurocrypt15name,
-  publisher = eurocryptpub,
-  series = mylncs,
-  year = 2015,
-}
-
-@InProceedings{EC:CHLRS15,
-  author = "Jung Hee Cheon and Kyoohyung Han and Changmin Lee and Hansol Ryu and Damien Stehl{\'{e}}",
-  title = "Cryptanalysis of the Multilinear Map over the Integers",
-  booktitle = eurocrypt15name,
-  publisher = eurocryptpub,
-  series = mylncs,
-  year = 2015,
-  note = "\FullVersion{https://eprint.iacr.org/2014/906}",
 }
 
 @InProceedings{FPS:GLLS12,
@@ -236,7 +291,26 @@
   month = aug # "~8--10,",
   publisher = "USENIX Association",
   year = 2012,
-  note = "Full version available at \url{https://eprint.iacr.org/2012/179}",
+  note = "\FullVersion{https://eprint.iacr.org/2012/179}",
+}
+
+@InProceedings{USS:KMsB13,
+  author = "Ben Kreuter and Benjamin Mood and {abhi} {shelat} and Kevin Butler",
+  title = "{PCF}: A portable circuit format for scalable two-party secure computation",
+  editor = "Sam King",
+  booktitle = "22nd USENIX Security Symposium",
+  address = "Washington, D.C., USA",
+  month = aug # "~14--16,",
+  publisher = "USENIX Association",
+  year = 2013,
+}
+
+@Misc{EPRINT:ChoOrl15,
+  author = "Tung Chou and Claudio Orlandi",
+  title = "The simplest protocol for oblivious transfer",
+  year = 2015,
+  howpublished = "Cryptology ePrint Archive, Report 2015/267",
+  note = "\url{https://eprint.iacr.org/2015/267}",
 }
 
 @Misc{EPRINT:AGIS14a,
@@ -276,6 +350,18 @@
   author = "Dan Bernstein",
   title = "Cryptographic competitions: {CAESAR} call for submissions, final (2014.01.27)",
   howpublished = "\url{http://competitions.cr.yp.to/caesar-call.html}"
+}
+
+@Misc{Cryptopp,
+  title = "Crypto++ 5.6.0 Benchmarks",
+  howpublished = "\url{http://www.cryptopp.com/benchmarks.html}",
+  note = "Accessed 2015-05-08"
+}
+
+@Misc{NSA:ECC,
+  title = "The Case for Elliptic Curve Cryptography",
+  howpublished = "\url{https://www.nsa.gov/business/programs/elliptic_curve.shtml}",
+  note = "Accessed 2015-05-07"
 }
 
 @Book{Book:Goldreich09,
