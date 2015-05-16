@@ -42,7 +42,8 @@
 \fi
 
 \RequirePackage{amsfonts,amsmath,amssymb}
-\RequirePackage{framed}
+\RequirePackage{booktabs}
+\RequirePackage{mdframed}
 \RequirePackage[hyphens]{url}
 \RequirePackage{xspace}
 
@@ -170,8 +171,8 @@
 
 \newcommand{\bigo}[1]{\ensuremath{O\Paren{#1}}}
 \newcommand{\bigotilde}[1]{\ensuremath{\widetilde{O}\Paren{#1}}}
-\newcommand{\ppt}{\ensuremath{\textsc{ppt}}\xspace}
-\newcommand{\PPT}{\ensuremath{\textsc{ppt}}\xspace}
+\newcommand{\ppt}{{\textsc{ppt}}\xspace}
+\newcommand{\PPT}{{\textsc{ppt}}\xspace}
 \newcommand{\poly}{\ensuremath{\mathsf{poly}}}
 \newcommand{\inv}{^{-1}}
 
@@ -441,36 +442,32 @@
 }
 
 \newenvironment{nfbox}{%
-  \centering\footnotesize
-  \begin{framed}
+  \footnotesize
+  \begin{mdframed}
     \begin{minipage}{\linewidth}
 }{%
     \end{minipage}
-  \end{framed}
+  \end{mdframed}
 }
 
 \newenvironment{nfprot}[1]{%
-  \begin{center}
-    \footnotesize
-    \begin{framed}
-      \begin{minipage}{.95\linewidth}
-        {\begin{center}\underline{\textbf{Protocol} #1}\end{center}}
+  \footnotesize
+  \begin{mdframed}
+    \begin{minipage}{\linewidth}
+      {\begin{center}\underline{\textbf{Protocol} #1}\end{center}}
 }{%
-      \end{minipage}
-    \end{framed}
-  \end{center}
+    \end{minipage}
+  \end{mdframed}
 }
 
 \newenvironment{nffunc}[1]{%
-  \begin{center}
-    \footnotesize
-    \begin{framed}
-      \begin{minipage}{.95\linewidth}
-        {\begin{center}\underline{\textbf{Functionality} #1}\end{center}}
+  \footnotesize
+  \begin{mdframed}
+    \begin{minipage}{\linewidth}
+      {\begin{center}\underline{\textbf{Functionality} #1}\end{center}}
 }{%
-      \end{minipage}
-    \end{framed}
-  \end{center}
+    \end{minipage}
+  \end{mdframed}
 }
 
 %
