@@ -48,16 +48,15 @@
 \newcommand{\concat}{\:\|\:}
 \newcommand{\commentt}[1]{~\mbox{/\hspace{-0.1ex}/\;~\small\textrm{#1}}}
 
-\newenvironment{codehalf}[1]{
+\newenvironment{code}[2]{
   \small
   \begin{center}
-    \fbox{%
-      \parbox{0.45\textwidth}{%
+    \fbox{\parbox{#1\textwidth}{%
         \vspace{-13pt}
         \begin{tabular}{l}
           \hspace{-7pt}
           \parbox[t]{\textwidth}{%
-            #1
+          #2
           }
         \end{tabular}
         \vspace{-3ex}
@@ -68,22 +67,19 @@
   \vspace{-4ex}
 }
 
-\newenvironment{code}[1]{
+\newenvironment{codetwo}[3]{%
   \small
   \begin{center}
-    \fbox{%
-      \parbox{0.9\textwidth}{%
-        \vspace{-13pt}
-        \begin{tabular}{l}
-          \hspace{-7pt}
-          \parbox[t]{\textwidth}{%
-            #1
-          }
-        \end{tabular}
-        \vspace{-3ex}
-      }
-    }
+    \begin{tabular}{l}
+      \fbox{\parbox[t]{#1\textwidth}{%
+      #2
+      }}
+      \\
+      \fbox{\parbox[t]{#1\textwidth}{%
+      #3
+      }}
 }{%
+    \end{tabular}
+    \vspace{-3ex}
   \end{center}
-  \vspace{-4ex}
 }
