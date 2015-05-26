@@ -83,3 +83,24 @@
     \vspace{-3ex}
   \end{center}
 }
+
+\newenvironment{codethree}[4]{%
+  \small
+  \begin{center}
+    \begin{tabular}{l}
+      \fbox{\parbox[t]{#1\textwidth}{%
+      #2
+      }}
+      \\
+      \fbox{\parbox[t]{#1\textwidth}{%
+      #3
+      }}
+      \\
+      \fbox{\parbox[t]{#1\textwidth}{%
+      #4
+      }}
+}{%
+    \end{tabular}
+    \vspace{-3ex}
+  \end{center}
+}
